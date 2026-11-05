@@ -16,7 +16,7 @@ jobs:
 
     env:
       RSPM: https://packagemanager.rstudio.com/cran/__linux__/jammy/latest
-      R_LIBS_USER: /home/runner/work/_temp/Library
+      # R_LIBS_USER: /home/runner/work/_temp/Library
       TZ: UTC
       _R_CHECK_SYSTEM_CLOCK_: FALSE
       NOT_CRAN: true
@@ -41,10 +41,16 @@ jobs:
             pandoc \
             build-essential
 
-      - name: Install R dependencies
-        run: |
-          mkdir -p "$R_LIBS_USER"
-          R -e "install.packages(c('data.table','plotly','dplyr', 'httr', 'here', 'pxweb', 'htmltools', 'htmlwidgets', 'sodium'), lib = Sys.getenv('R_LIBS_USER'), repos = Sys.getenv('RSPM'))"
+      - name: Install renv
+        run: Rscript -e "install.packages('renv')"
+      
+      - name: Restore R packages with renv
+        run: Rscript -e "renv::restore()"
+
+      # - name: Install R dependencies
+      #   run: |
+      #     mkdir -p "$R_LIBS_USER"
+      #     R -e "install.packages(c('data.table','plotly','dplyr', 'httr', 'here', 'pxweb', 'htmltools', 'htmlwidgets', 'sodium', 'renv', 'logger'), lib = Sys.getenv('R_LIBS_USER'), repos = Sys.getenv('RSPM'))"
 
       - name: Run all R scripts in 'scripts' folder
         run: |
