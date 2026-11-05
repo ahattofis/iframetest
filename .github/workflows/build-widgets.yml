@@ -38,12 +38,16 @@ jobs:
             libcurl4-openssl-dev \
             libssl-dev \
             libxml2-dev \
+            libicu-dev \
             pandoc \
             build-essential
 
       - name: Install renv
         run: Rscript -e "install.packages('renv')"
-      
+
+      - name: Install stringi from source
+        run: Rscript -e "renv::install('stringi@1.8.7', type = 'source', repos = 'https://cloud.r-project.org')"
+
       - name: Restore R packages with renv
         run: Rscript -e "renv::restore()"
 
