@@ -7,11 +7,22 @@ cystat_date <- function (dtname, datecol) {
   dtinner <- copy(eval(parse(text=dtname)))
   dtinner[, dateinner := as.character(eval(parse(text=datecol)))]
   
+  # Remove "r" from revisited datasets
+  dtinner[, dateinner := gsub("\\s*\\(r\\)", "", dateinner)]
+  
   date_nchar <- dtinner[!is.na(dateinner), nchar(dateinner)][1]
   if(date_nchar==4){ # Annual data (e.g. "2021")
     dtinner[, Date := as.Date(paste0(dateinner, "-01-01")) ]
   }else if(date_nchar==7){ # Monthly data (e.g. "2021M09")
     dtinner[, Date := as.Date(paste0(substr(dateinner, 1, 4), "-", substr(dateinner, 6, 7), "-01")) ]
+  
+# Handle Academic Years: e.g. "2023/2024"  
+  } else if (grepl("^\\d{4}/\\d{4}$", dtinner$dateinner[1])) {  # Academic Year: "2023/2024"
+    dtinner[, Date := as.Date(paste0(substr(dateinner, 1, 4), "-01-01"))]  
+    
+# Handle Intervals: e.g. "2000 - 2002" --> keep as original string
+  } else if (grepl("^\\d{4}\\s*-\\s*\\d{4}$", dtinner$dateinner[1])) {
+    dtinner[, Date := dateinner]
   }
   dtinner[, dateinner := NULL]
   
@@ -120,6 +131,10 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
                       data = dt_inn,
                       x = dt_inn[[xcol]],
                       y = dt_inn[[ycols[t]]],
+                      legendgroup = as.character(t),                       
+                      yaxis = if(!is.null(options_fig$trace[[t]]$yaxis)){ # secondary y-axis 
+                          options_fig$trace[[t]]$yaxis
+                        }else{"y"},
                       hovertemplate = paste0(
                         options_fig$trace[[t]][[lang]]$hover_h,": <b>%", 
                         options_fig$trace[[t]]$hover_f,
@@ -127,25 +142,49 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
                       type = options_fig$trace[[t]]$type,
                       name = options_fig$trace[[t]][[lang]]$yaxis_h,
                       visible = if(options_fig$show_updmenu){vis}else{NULL},
+
+                      orientation = options_fig$trace[[t]]$orientation, 
                       
-                      marker = if(options_fig$gen$chart_type=="line"){
-                        list(color = options_fig$trace[[t]]$point_c,
-                             size = options_fig$trace[[t]]$point_s,
-                             symbol = options_fig$trace[[t]]$point_t
-                             )
-                        }else if(options_fig$gen$chart_type=="bar"){
+                      # marker = if(options_fig$gen$chart_type=="line"){
+                      #   list(color = options_fig$trace[[t]]$point_c,
+                      #        size = options_fig$trace[[t]]$point_s,
+                      #        symbol = options_fig$trace[[t]]$point_t
+                      #        )
+                      #   }else if(options_fig$gen$chart_type=="bar"){
+                      #     list(color = options_fig$trace[[t]]$bar_c)
+                      #   }else{NULL},
+
+                      marker = if(options_fig$trace[[t]]$type == "scatter"){
+                          list(
+                            color = options_fig$trace[[t]]$point_c, 
+                            size = options_fig$trace[[t]]$point_s,  
+                            symbol = options_fig$trace[[t]]$point_t 
+                          )
+                        } else if(options_fig$trace[[t]]$type == "bar"){
                           list(color = options_fig$trace[[t]]$bar_c)
-                        }else{NULL},
+                        } else { NULL },  
                       
-                      mode = if(options_fig$gen$chart_type=="line"){
-                        options_fig$trace[[t]]$mode
-                        }else{NULL},  
+                      # mode = if(options_fig$gen$chart_type=="line"){
+                      #       options_fig$trace[[t]]$mode
+                      #     }else{NULL},  
+
+                      mode = if(options_fig$trace[[t]]$type == "scatter"){ 
+                            options_fig$trace[[t]]$mode 
+                          }else{NULL},  
+                      connectgaps = TRUE,  # e.g necessary for LabourForce graph where years 2023 and 2024 are missing
                       
-                      line = if(options_fig$gen$chart_type=="line"){
+                      # line = if(options_fig$gen$chart_type=="line"){
+                      #   list(color = options_fig$trace[[t]]$line_c,
+                      #        width = options_fig$trace[[t]]$line_s,
+                      #        dash = options_fig$trace[[t]]$line_t)
+                      #   }else{NULL}
+
+                      line = if(options_fig$trace[[t]]$type == "scatter"){
                         list(color = options_fig$trace[[t]]$line_c,
                              width = options_fig$trace[[t]]$line_s,
                              dash = options_fig$trace[[t]]$line_t)
-                        }else{NULL}
+                        } else { NULL }
+
                       )
     
     if(options_fig$show_updmenu){
@@ -172,6 +211,9 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
                     y = options_fig$legend$y,
                     yanchor = options_fig$legend$yanchor,
                     itemwidth = options_fig$legend$itemwidth,
+                    tracegroupgap = if(!is.null(options_fig$legend$tracegroupgap)){
+                      options_fig$legend$tracegroupgap
+                      }else{10},
                     font = list(size = options_fig$fonts$font_s - 1)
                   )
                 },
@@ -180,6 +222,7 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
                   size = options_fig$fonts$font_s,
                   color = options_fig$fonts$font_c
                 ),
+                
                 separators = ',.',
                 hovermode = options_fig$hover$hover_t,
                 hoverlabel = list(
@@ -202,9 +245,13 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
                     )
                   )
                 } else {NULL},     # --END-- updatemenus
-               
+
                 xaxis = list(
-                  title = options_fig$xaxis$xaxis_h,
+                  # title = options_fig$xaxis$xaxis_h,
+                  title = list(
+                    text = options_fig$xaxis[[lang]]$title,
+                      standoff = options_fig$gen$standoff
+                    ),
                   hoverformat = options_fig$hover$hover_xf[[lang]],
                   range = if(options_fig$gen$chart_type=="line"){
                     c(initial_start, initial_end)
@@ -212,6 +259,7 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
                   expand = options_fig$xaxis$xaxis_e,
                   fixedrange = FALSE,
                   tickangle = options_fig$xaxis$xaxis_la,
+                  tickformat = options_fig$xaxis$tickformat,
                   showspikes = TRUE,
                   spikemode = "across+toaxis", # across
                   spikesnap = 'data',
@@ -226,7 +274,7 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
                     bgcolor = options_fig$xaxis$xaxis_rs_c
                   )
                 ), # --END-- xaxis
-                
+
                 yaxis = list(
                   title = if(! options_fig$use_annotations){
                     list(text = options_fig$yaxis[[lang]]$title,
@@ -234,29 +282,127 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
                          )
                     }else{NULL},
                   fixedrange = FALSE,
-                  autorange = TRUE
+                  autorange = TRUE,                  
+                  tickformat = options_fig$yaxis[[lang]]$tickformat
                 ), # --END-- yaxis
-                
-                annotations = if(options_fig$use_annotations){ # for y-axis label to appear at the top, where the axis arrow ends
-                    list(
-                      x = options_fig$annotations$x,
-                      y = options_fig$annotations$y,
-                      xref = options_fig$annotations$xref,
-                      yref = options_fig$annotations$yref,
-                      text = options_fig$yaxis[[lang]]$title,
-                      showarrow = options_fig$annotations$showarrow,
-                      xanchor = options_fig$annotations$xanchor,
-                      yanchor = options_fig$annotations$yanchor,
-                      font = list(
-                        family = options_fig$fonts$font_t,
-                        size = options_fig$fonts$font_s,
-                        color = options_fig$fonts$font_c
+
+                yaxis2 = if (!is.null(options_fig$yaxis2)){list(
+                    title = if(!options_fig$use_annotations){
+                      list(text = options_fig$yaxis2[[lang]]$title,
+                           standoff = options_fig$gen$standoff
+                          )
+                    } else { NULL },                    
+                    fixedrange = FALSE,
+                    autorange = TRUE,
+                    tickformat = options_fig$yaxis2[[lang]]$tickformat,
+                    overlaying = "y",
+                    side = "right",
+                    showgrid = FALSE
+                  )
+                } else { NULL },    # --END-- yaxis2
+
+                annotations = if(options_fig$use_annotations){ 
+                    anos <- list(
+
+                      # for primary yaxis label to appear at the top, where the axis arrow ends
+                      list(
+                        x = options_fig$annotations$x,
+                        y = options_fig$annotations$y,
+                        xref = options_fig$annotations$xref,
+                        yref = options_fig$annotations$yref,
+                        text = options_fig$yaxis[[lang]]$title,
+                        showarrow = options_fig$annotations$showarrow,
+                        xanchor = options_fig$annotations$xanchor,
+                        yanchor = options_fig$annotations$yanchor,
+                        font = list(
+                          family = options_fig$fonts$font_t,
+                          size = options_fig$fonts$font_s,
+                          color = options_fig$fonts$font_c
+                        )
                       )
+                      ,
+                      if(!is.null(options_fig$yaxis2)) {
+                        list(
+                          x = options_fig$annotations2$x,
+                          y = options_fig$annotations2$y,
+                          xref = options_fig$annotations2$xref,
+                          yref = options_fig$annotations2$yref,
+                          text = options_fig$yaxis2[[lang]]$title,
+                          showarrow = options_fig$annotations2$showarrow,
+                          xanchor = options_fig$annotations2$xanchor,
+                          yanchor = options_fig$annotations2$yanchor,
+                          font = list(
+                            family = options_fig$fonts$font_t,
+                            size = options_fig$fonts$font_s,
+                            color = options_fig$fonts$font_c
+                          )
+                        )
+                      }else{NULL}
+
                     )
                   } # --END-- annotations
   )
   
   return(fig)
+}
+
+
+
+# ###########################################################################################################
+# Create Combination Plots
+cystat_main_comboplots <- function(combination_name, lang, combo_subthemes, combo_plots_list, graph_dir){
+  # Get the subthemes making up the combo
+  parts <- combo_subthemes[[combination_name]]
+
+  # retrieve plots from the storage list and force tighter internal margins
+  plot_list <- lapply(parts, function(p) {
+    p_obj <- combo_plots_list[[paste0(p, "_", lang)]]
+    if(!is.null(p_obj)){
+      p_obj <- p_obj %>% layout(margin = list(l = 50, r = 30, t = 50, b = 80))
+    }
+    return(p_obj)
+  })
+  
+  # Check if we have all plots needed
+  if(any(sapply(plot_list, is.null))) { next }
+  
+  # Create layout
+  combined_layout <- tags$div(
+    style = "display: flex; flex-direction: row; gap: 20px; width: 100%; height: 98vh; padding: 10px; box-sizing: border-box;",
+    tags$div(style = "flex: 1; min-width: 0;", plot_list[[1]]),
+    tags$div(style = "flex: 1; min-width: 0;", plot_list[[2]])
+  )
+  
+  # Apply styling
+  combined_fig <- htmltools::browsable(
+    tagList(
+      tags$head(
+        tags$style(HTML("
+          body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; }
+          .svg-container { border: 1px solid black !important; }
+          
+          /* Set inset to very small values to hug the border */
+          #htmlwidget_container {
+              inset: 5px 10px 5px 10px !important; 
+          }
+          
+          .main-svg { width: 100% !important; height: 100% !important; }
+        "))
+      ),
+      combined_layout
+    )
+  )
+  
+  # Save the combo widget
+  html_fname_combo <- paste0(combination_name, "_", toupper(lang), ".html")
+  full_path_combo <- paste0(graph_dir, "/", html_fname_combo)
+  
+  htmltools::save_html(
+    html = combined_fig,
+    file = full_path_combo
+  )
+  
+  cat(paste0("----->> Combined Graph saved to: ", full_path_combo, "\n"))
 }
 
 

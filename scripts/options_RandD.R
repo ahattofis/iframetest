@@ -20,9 +20,6 @@ options_pxf <- list(
     col_value = "Main Indicators for Research and Development, Annual",
     col_date  = "YEAR",      
     col_trnsp = list("INDICATOR"),
-    col_trnsp_colunits = list(
-      c("41", "42", "43", "44", "45", "46")
-    ),       
     col_trnsp_colnames = list(       
       c(
         "R&D personnel, by field of science: Natural Sciences",
@@ -34,15 +31,13 @@ options_pxf <- list(
       )
     ),
     col_trnsp_renamefrom = NULL,
-    col_trnsp_renameto = NULL
+    col_trnsp_renameto = NULL,
+    col_filter_str = ""
   ),
   el=list(
     col_value = "Βασικοί Δείκτες για την Έρευνα και Ανάπτυξη, Ετήσια",
     col_date  = "ΕΤΟΣ",    
-    col_trnsp = list("ΔΕΙΚΤΗΣ"),   
-    col_trnsp_colunits = list(
-      c("41", "42", "43", "44", "45", "46")
-    ), 
+    col_trnsp = list("ΔΕΙΚΤΗΣ"),
     col_trnsp_colnames = list(
       c(
         "Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Θετικές Επιστήμες",
@@ -54,7 +49,8 @@ options_pxf <- list(
       )
     ),
     col_trnsp_renamefrom = NULL,
-    col_trnsp_renameto = NULL
+    col_trnsp_renameto = NULL,
+    col_filter_str = ""
   )
 )
 
@@ -76,10 +72,10 @@ options_fig <- list(
     font_s = 14             # font size
   ),
   hover = list(
-    hover_t = "x unified",  # hover type
+    hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
     hover_c = "black",  # hover font color
     hover_b = "black",  # hover border color
-    hover_bg = "white",     # hover background color
+    hover_bg = "white",     # hover background color # Set to NULL to have separate background colors for each graph line/bar shown (if hover_t = "x")
     hover_xf = list(
       en="Year: %Y",
       el="Έτος: %Y"
@@ -93,7 +89,7 @@ options_fig <- list(
   showlegend = TRUE,
   legend = list(
     x = 0.5,
-    y = -0.07,
+    y = -0.08,
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
@@ -141,10 +137,10 @@ options_fig <- list(
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
 
-      # --- BAR GRAPH options
+      # --- BAR GRAPH options - in case of a bar chart
       bar_c = '#00065F', # bar color
       
-      # --- LINE GRAPH options
+      # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
       line_c  = '#00065F',  # line color
@@ -168,10 +164,10 @@ options_fig <- list(
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
 
-      # --- BAR GRAPH options
+      # --- BAR GRAPH options - in case of a bar chart
       bar_c = '#ff7f0e', # bar color
       
-      # --- LINE GRAPH options
+      # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
       line_c  = '#ff7f0e',  # line color
@@ -195,10 +191,10 @@ options_fig <- list(
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
 
-      # --- BAR GRAPH options
+      # --- BAR GRAPH options - in case of a bar chart
       bar_c = '#d62728', # bar color
       
-      # --- LINE GRAPH options
+      # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
       line_c  = '#d62728',  # line color
@@ -222,10 +218,10 @@ options_fig <- list(
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
 
-      # --- BAR GRAPH options
+      # --- BAR GRAPH options - in case of a bar chart
       bar_c = '#222222', # bar color
       
-      # --- LINE GRAPH options
+      # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
       line_c  = '#222222',  # line color
@@ -249,10 +245,10 @@ options_fig <- list(
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
       
-      # --- BAR GRAPH options
+      # --- BAR GRAPH options - in case of a bar chart
       bar_c = '#1f77b4', # bar color
 
-      # --- LINE GRAPH options
+      # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
       line_c  = '#1f77b4',  # line color
@@ -276,10 +272,10 @@ options_fig <- list(
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
 
-      # --- BAR GRAPH options
+      # --- BAR GRAPH options - in case of a bar chart
       bar_c = '#2ca02c', # bar color
       
-      # --- LINE GRAPH options
+      # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
       line_c  = '#2ca02c',  # line color

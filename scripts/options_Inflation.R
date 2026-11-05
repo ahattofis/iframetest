@@ -20,19 +20,19 @@ options_pxf <- list(
     col_value = "Inflation, Annual",
     col_date  = "YEAR",    # in format 2021
     col_trnsp = NULL,  # if NULL, no transposition
-    col_trnsp_colunits = NULL,
     col_trnsp_colnames = NULL,
     col_trnsp_renamefrom = c(""),
-    col_trnsp_renameto = c("")
+    col_trnsp_renameto = c(""),
+    col_filter_str = ""
   ),
   el=list(
     col_value = "Πληθωρισμός, Ετήσια",
     col_date  = "ΕΤΟΣ",    # in format 2021    
     col_trnsp = NULL,  # if NULL, no transposition
-    col_trnsp_colunits = NULL,
     col_trnsp_colnames = NULL,
     col_trnsp_renamefrom = c(""),
-    col_trnsp_renameto = c("")
+    col_trnsp_renameto = c(""),
+    col_filter_str = ""
   )
 )
 
@@ -54,10 +54,10 @@ options_fig <- list(
     font_s = 14             # font size
   ),
   hover = list(
-    hover_t = "x unified",  # hover type
+    hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
     hover_c = "black",  # hover font color
     hover_b = "black",  # hover border color
-    hover_bg = "white",     # hover background color
+    hover_bg = "white",     # hover background color # Set to NULL to have separate background colors for each graph line/bar shown (if hover_t = "x")
     hover_xf = list(
       en="Year: %Y",
       el="Έτος: %Y"
@@ -71,7 +71,7 @@ options_fig <- list(
   showlegend = FALSE,
   legend = list(
     x = 0.5,
-    y = -0.07,
+    y = -0.1,
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
@@ -96,7 +96,7 @@ options_fig <- list(
   ),
   use_annotations = TRUE,
   annotations = list( # for y-axis label to appear at the top, where the axis arrow ends
-    x = -0.03,
+    x = -0.08,
     y = 0.5,
     xref = "paper",
     yref = "paper",
@@ -119,10 +119,10 @@ options_fig <- list(
       hover_f = "{y:.1f}",    # y-values display format
       type = 'scatter',       # line graph, bar chart, etc...
       
-      # --- BAR GRAPH options
+      # --- BAR GRAPH options - in case of a bar chart
       bar_c = '#00065F', # bar color
 
-      # --- LINE GRAPH options
+      # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
       line_c  = '#F28500',  # line color

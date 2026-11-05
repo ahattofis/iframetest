@@ -18,37 +18,45 @@ library(plotly)
 library(dplyr)
 library(htmltools)
 library(htmlwidgets)
+library(logger)
 
 
 # ##############################################################################
 # [B] OPTIONS AND PATHS
+source(here::here(paste0("scripts/functions.R")))
 dir.create( graph_dir <- here::here("docs/"), recursive=TRUE, showWarnings=FALSE)
 dir.create( logs_dir <- here::here("logs/"), recursive=TRUE, showWarnings=FALSE)
 csv_changes <- paste0(logs_dir,"/DT_Hashes.csv")
 
-source(here::here("scripts/functions.R"))
-subthemes <- c("RandD","Inflation","Tourism")
+
+subthemes <- c("Agriculture", "BusinessRegister", "Construction",
+                "eCommerce", "Education", "Energy",
+                "Environment", "ExternalTrade", "Health", 
+                "Industry", "Inflation", "Innovation", 
+                "LabourCost", "LabourForce", "LifeExpectancy", 
+                "NationalAccounts", "Population", "PublicFinance",
+                "RandD", "Services", "SocialIndicators",
+                "Tourism", "Trade", "UseOfInternet"
+              )
 langs <- c("en", "el")
 
 
+combo_subthemes <- list(
+  "Demographics" = list("Population", "LifeExpectancy"),
+  "InformationSociety" = list("UseOfInternet", "eCommerce")
+)
+combo_plots_list <- list() # all_plots
+
 ##############################################################################
 # [C] LOGS
-logfile <- file(paste0(logs_dir,"/Log_InteractiveGraphs_",datetime,".txt"))
-sink(logfile, append = FALSE, type = c("output"), split=FALSE)
-sink(logfile, append = FALSE, type = c("message"), split=FALSE)
-
-cat("\n")
-cat("################################################\n")
-cat("### CREATE INTERACTIVE GRAPHS FROM CYSTAT DB ###\n")
-cat("################################################\n")
-cat("\n\n")
-cat(paste0("Start Time:  ", start_time))
-cat("\n\n")
-
+logger::log_appender(logger::appender_file(paste0(logs_dir,"/Log_InteractiveGraphs_",datetime,".txt")))
+logger::log_info(
+  "CREATE INTERACTIVE GRAPHS FROM CYSTAT DB | Start time: {format(start_time, '%Y-%m-%d %H:%M:%S')}"
+)
 
 # ##############################################################################
 # [E] GET DATA
-cat(paste0("----->> Load previous Hashes file...","\n\n"))
+logger::log_info("----->> Load previous Hashes file...")
 if(file.exists(csv_changes)) {
   previous_hashes <- fread(csv_changes, colClasses=c("character"))
   setorderv(previous_hashes, c("graph","language","datetime"), c(1,1,-1))
@@ -58,61 +66,56 @@ if(file.exists(csv_changes)) {
 }
 
 for(subtheme in subthemes){
-# subtheme <- subthemes[1]
-  
-  cat("##############################################################################\n")
-  cat(paste0("--- SUBTHEME: ",subtheme,"\n"))
-  cat(paste0("-    Loading Options...","\n"))
+# subtheme <- "Agriculture"    
+  logger::log_info("------------------------------------------------------------------------------")
+  logger::log_info(paste0("--- SUBTHEME: ",subtheme))
+  logger::log_info(paste0("-    Loading Options..."))
   source(here::here(paste0("scripts/options_",subtheme,".R")))
 
   for(lang in langs){
     # lang <- langs[1]
-    cat("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * \n")
-    cat(paste0("    LANGUAGE: ",toupper(lang)," (",subtheme,")","\n"))
-    cat("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * \n")
+    logger::log_info(paste0("    LANGUAGE: ",toupper(lang)," (",subtheme,")"))    
     
+    logger::log_info(paste0("[01] Get API metadata..."))
+    px_metad <- pxweb::pxweb_get(url = paste0(options_api[[lang]]$db, options_api[[lang]]$pxf))    
     
-    cat(paste0("[01] Get API metadata...","\n"))
-    px_metad <- pxweb::pxweb_get(url = paste0(options_api[[lang]]$db, options_api[[lang]]$pxf))
-    
-    
-    cat(paste0("[02] Get API data...","\n"))
-    cat(paste0("-    Build API query...","\n"))
+    logger::log_info(paste0("[02] Get API data..."))
+    logger::log_info(paste0("-    Build API query..."))
     px_varbs <- sapply(px_metad$variables, `[[`, "code")
     px_query <- lapply(px_varbs, function(x) c("*"))
     names(px_query) <- px_varbs
-    cat(paste0("-    Get data via API...","\n"))
+    logger::log_info(paste0("-    Get data via API..."))
     px_data <- pxweb::pxweb_get(url = paste0(options_api[[lang]]$db,options_api[[lang]]$pxf), 
                                 query = px_query)
-    cat(paste0("-    Data in tabular format...","\n"))
+    logger::log_info(paste0("-    Data in tabular format..."))
     df <- as.data.frame(px_data, column.name.type = "text", variable.value.type = "text")
     dt <- data.table::as.data.table(df)
     rm(px_metad, px_varbs, px_query, px_data, df)
     
     
-    cat(paste0("[03] Hashing data and comparing to prev version...","\n"))
-    cat(paste0("-    Current Hash...","\n"))
+    logger::log_info(paste0("[03] Hashing data and comparing to prev version..."))
+    logger::log_info(paste0("-    Current Hash..."))
     dt_raw <- serialize(dt, connection = NULL)
     current_hash <- sodium::bin2hex(sodium::hash(dt_raw))
 
-    cat(paste0("-    Check previous Hashes...","\n"))
+    logger::log_info(paste0("-    Check previous Hashes..."))
     if(exists("previous_hashes")) {
       previous_hash <- previous_hashes[graph == subtheme & language == lang][1,hash]
       if(is.na(previous_hash)){
-        cat(paste0("-    -- No Previous hash found, hence CREATE graph","\n"))
+        logger::log_info(paste0("-    -- No Previous hash found, hence CREATE graph"))
         status = 1
       }else{
         if(previous_hash == current_hash){
-          cat(paste0("-    -- Current Hash == Previous hash, hence do NOT re-create graph","\n"))
+          logger::log_info(paste0("-    -- Current Hash == Previous hash, hence do NOT re-create graph"))
           status = 0
         }else{
-          cat(paste0("-    -- Current Hash != Previous hash, hence RE-CREATE graph","\n"))
+          logger::log_info(paste0("-    -- Current Hash != Previous hash, hence RE-CREATE graph"))
           status = 1
         }
       }
       rm(previous_hash)
     }else{
-      cat(paste0("-    -- No Previous hashes file found, hence CREATE file AND graph","\n"))
+      logger::log_info(paste0("-    -- No Previous hashes file found, hence CREATE file AND graph"))
       status = 1
     }
     current_hash_dt <- data.table::data.table(graph = subtheme, language = lang,
@@ -123,37 +126,46 @@ for(subtheme in subthemes){
     rm(dt_raw, current_hash, current_hash_dt)
     
     
-    if (status == 1) {
-      cat(paste0("[04] Cleaning data...","\n"))
-      cat(paste0("-    Identify and rename 'value' column (from'",options_pxf[[lang]]$col_value,"')","\n"))
+    # # Check if specific subtheme is included in a combo 
+    is_combo_part <- any(sapply(combo_subthemes, function(x) subtheme %in% unlist(x)))
+        
+    if (status == 1 | is_combo_part) {
+      logger::log_info(paste0("[04] Cleaning data..."))
+      logger::log_info(paste0("-    Identify and rename 'value' column (from'",options_pxf[[lang]]$col_value,"')"))
       setnames(dt, options_pxf[[lang]]$col_value, "Value")
       
+      
+      if(nchar(options_pxf[[lang]]$col_filter_str)){
+        logger::log_info(paste0("-    Filtering..."))
+        eval(parse(text= options_pxf[[lang]]$col_filter_str))
+      }
+
+
+      logger::log_info(paste0("-    Transposing..."))
       if(!is.null(options_pxf[[lang]]$col_trnsp)) {
-        cat(paste0("-    Transposing the data on columns '", paste(options_pxf[[lang]]$col_trnsp, collapse = "', '") ,"'","\n"))
-        
-        eval(parse(text = paste0( "dt <- dcast(dt, ... ~ ", options_pxf[[lang]]$col_trnsp ,", value.var='Value')")))
+        logger::log_info(paste0("-    Transposing the data on columns '", paste(options_pxf[[lang]]$col_trnsp, collapse = "', '") ,"'"))
+        eval(parse(text = paste0( "dt <- dcast(dt, ... ~ ", options_pxf[[lang]]$col_trnsp,", value.var='Value')")))
         colsvalue <- unlist(options_pxf[[lang]]$col_trnsp_colnames)
         if(!is.null(options_pxf[[lang]]$col_trnsp_renamefrom)){
+          logger::log_info(paste0("-    Renaming after Transposing..."))
           idx <- match(colsvalue, options_pxf[[lang]]$col_trnsp_renamefrom)
           colsvalue[!is.na(idx)] <- options_pxf[[lang]]$col_trnsp_renameto[idx[!is.na(idx)]]
           setnames(dt, c(options_pxf[[lang]]$col_trnsp_renamefrom), c(options_pxf[[lang]]$col_trnsp_renameto))
         }
       }else{
-        cat(paste0("-    Will NOT be transposing the data...","\n"))
+        logger::log_info(paste0("-    Will NOT be transposing the data..."))
         colsvalue <- "Value"
-      }
-      
-      cat(paste0("-    Identify and format 'Date' column (from'",options_pxf[[lang]]$col_date,"')","\n"))
+      }      
+
+      logger::log_info(paste0("-    Identify and format 'Date' column (from'",options_pxf[[lang]]$col_date,"')"))
       dt <- cystat_date(dtname = "dt", datecol = options_pxf[[lang]]$col_date)
       
-      cat(paste0("-    Finalised Table to be plotted, now having the following structure:","\n"))
-      cat(paste0("==========================================================================","\n"))
+      logger::log_info(paste0("-    Finalised Table to be plotted, now having the following structure:"))
       dt <- dt[,c("Date",colsvalue), with=F]
-      print(tail(dt,3))
-      cat(paste0("==========================================================================","\n"))
-
-      
-      cat(paste0("[05] Plotting data...","\n"))
+      table_lines <- capture.output(print(tail(dt, 3)))      
+      for (line in table_lines) logger::log_info(line)
+            
+      logger::log_info(paste0("[05] Plotting data..."))
       nrows <- dt[,.N]
       if(nrows>50 & options_fig$xaxis$xaxis_rs_v){
         initial_start <- as.character(dt[nrows-50,Date])
@@ -164,11 +176,11 @@ for(subtheme in subthemes){
       }
       
       
-      cat(paste0("-    Create custom button for linking to CYSTAT DB:","\n","      --> ",options_api[[lang]]$user_link,"\n"))
+      logger::log_info(paste0("-    Create custom button for linking to CYSTAT DB:","      --> ",options_api[[lang]]$user_link))
       custom_button <- cystat_custbuttn(url = options_api[[lang]]$user_link)
       
       
-      cat(paste0("-    Creating plot...","\n"))
+      logger::log_info(paste0("-    Creating plot..."))
       fig <- plot_ly()
       
       fig <- config( fig,
@@ -185,7 +197,7 @@ for(subtheme in subthemes){
       )
       
       
-      cat(paste0("-    Adding Border and Margin...","\n"))
+      logger::log_info(paste0("-    Adding Border and Margin..."))
       fig_final <- prependContent(fig, tags$style(HTML(paste0("
           /* Create border on overlapping containerS */
           .svg-container {
@@ -221,7 +233,10 @@ for(subtheme in subthemes){
         selfcontained = TRUE
       )
       
-      cat(paste0("----->> Graph saved to: ", graph_dir,"/",html_fname,"\n\n"))
+      logger::log_info(paste0("----->> Graph saved to: ", graph_dir,"/",html_fname))
+
+      logger::log_info(paste0("-    Populate list of combo plots..."))
+      combo_plots_list[[paste0(subtheme, "_", lang)]] <- fig
       
       rm(colsvalue, nrows, initial_start, initial_end, custom_button, 
          fig, fig_final, html_fname)
@@ -229,35 +244,44 @@ for(subtheme in subthemes){
       
     }# --- END "status"
     
-    rm(lang, dt, status)
+    rm(lang, dt)#, status)
     
   } # --- END "langs"
   
   rm(subtheme, options_fig, options_api, options_pxf)
   gc()
-  cat("\n\n")
+  
   
 } # --- END "subthemes"
 
+logger::log_info("")
+logger::log_info("------------------------------------------------------------------------------")
+logger::log_info("--- COMBINATION PLOTS:")
+for(combination_name in names(combo_subthemes)){
+  logger::log_info(paste0("-   COMBO SUBTHEME: ",combination_name))
+  for(lang in langs){
 
-cat("\n\n")
+    cystat_main_comboplots(combination_name = combination_name, 
+                            lang = lang, 
+                            combo_subthemes = combo_subthemes, 
+                            combo_plots_list = combo_plots_list,
+                            graph_dir = graph_dir)
+    
+  }
+}
+
+
 data.table::fwrite(current_hashes, file=csv_changes, sep=";")
 rm(current_hashes)
-cat(paste0("----->> Save new Hashes file...","\n\n"))
+logger::log_info(paste0("----->> Save new Hashes file..."))
 
 
 end_time <- Sys.time()
-cat("\n\n")
-cat(paste0("END Time: ", end_time))
-cat("\n")
+logger::log_info(paste0("END Time: ", end_time))
 timetaken <- end_time - start_time
-cat(paste0("Time taken for code to run: ", timetaken, " ",units(timetaken)))
-cat("\n\nFINISHED!\n\n")
-cat("##############################################################################\n")
-cat("\n")
+logger::log_info(paste0("Time taken for code to run: ", timetaken, " ",units(timetaken)))
+logger::log_info("FINISHED!")
+
 
 rm(list=ls())
 gc()
-
-closeAllConnections()
-
