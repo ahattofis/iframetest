@@ -4,7 +4,7 @@
 start_time <- Sys.time()
 datetime <- format(start_time,"%Y%m%d_%H%M%S")
 
-pckgs <- c('data.table','plotly','dplyr', 'httr', 'here', 'pxweb', 'htmltools', 'htmlwidgets', 'sodium', 'renv', 'logger')
+pckgs <- c('data.table','plotly','dplyr', 'httr', 'here', 'pxweb', 'htmltools', 'htmlwidgets', 'sodium')
 if( length(setdiff(pckgs, rownames(installed.packages()))) > 0 ){
   toinstall <- setdiff( pckgs, rownames(installed.packages()))
   cat(paste0("   --> Will be installing the following packages: '",paste(toinstall,collapse="' + '"),"'\n"))
@@ -28,12 +28,12 @@ dir.create( graph_dir <- here::here("docs/"), recursive=TRUE, showWarnings=FALSE
 dir.create( logs_dir <- here::here("logs/"), recursive=TRUE, showWarnings=FALSE)
 csv_changes <- paste0(logs_dir,"/DT_Hashes.csv")
 
-
+# subthemes <- c("Agriculture")
 subthemes <- c("Agriculture", "BusinessRegister", "Construction",
                 "eCommerce", "Education", "Energy",
-                "Environment", "ExternalTrade", "Health", 
-                "Industry", "Inflation", "Innovation", 
-                "LabourCost", "LabourForce", "LifeExpectancy", 
+                "Environment", "ExternalTrade", "Health",
+                "Industry", "Inflation", "Innovation",
+                "LabourCost", "LabourForce", "LifeExpectancy",
                 "NationalAccounts", "Population", "PublicFinance",
                 "RandD", "Services", "SocialIndicators",
                 "Tourism", "Trade", "UseOfInternet"
@@ -56,14 +56,15 @@ logger::log_info(
 
 # ##############################################################################
 # [E] GET DATA
-logger::log_info("----->> Load previous Hashes file...")
-if(file.exists(csv_changes)) {
-  previous_hashes <- fread(csv_changes, colClasses=c("character"))
-  setorderv(previous_hashes, c("graph","language","datetime"), c(1,1,-1))
-  current_hashes <- copy(previous_hashes)
-}else{
-  current_hashes <- data.table()
-}
+# logger::log_info("----->> Load previous Hashes file...")
+# if(file.exists(csv_changes)) {
+#   previous_hashes <- fread(csv_changes, colClasses=c("character"))
+#   setorderv(previous_hashes, c("graph","language","datetime"), c(1,1,-1))
+#   current_hashes <- copy(previous_hashes)
+# }else{
+#   current_hashes <- data.table()
+# }
+current_hashes <- data.table()
 
 for(subtheme in subthemes){
 # subtheme <- "Agriculture"    
@@ -254,21 +255,21 @@ for(subtheme in subthemes){
   
 } # --- END "subthemes"
 
-logger::log_info("")
-logger::log_info("------------------------------------------------------------------------------")
-logger::log_info("--- COMBINATION PLOTS:")
-for(combination_name in names(combo_subthemes)){
-  logger::log_info(paste0("-   COMBO SUBTHEME: ",combination_name))
-  for(lang in langs){
-
-    cystat_main_comboplots(combination_name = combination_name, 
-                            lang = lang, 
-                            combo_subthemes = combo_subthemes, 
-                            combo_plots_list = combo_plots_list,
-                            graph_dir = graph_dir)
-    
-  }
-}
+# logger::log_info("")
+# logger::log_info("------------------------------------------------------------------------------")
+# logger::log_info("--- COMBINATION PLOTS:")
+# for(combination_name in names(combo_subthemes)){
+#   logger::log_info(paste0("-   COMBO SUBTHEME: ",combination_name))
+#   for(lang in langs){
+# 
+#     cystat_main_comboplots(combination_name = combination_name, 
+#                             lang = lang, 
+#                             combo_subthemes = combo_subthemes, 
+#                             combo_plots_list = combo_plots_list,
+#                             graph_dir = graph_dir)
+#     
+#   }
+# }
 
 
 data.table::fwrite(current_hashes, file=csv_changes, sep=";")

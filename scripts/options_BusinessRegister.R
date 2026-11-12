@@ -51,7 +51,8 @@ options_fig <- list(
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 14             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -83,13 +84,13 @@ options_fig <- list(
     xaxis_rs_s = 0.03       # thicness of rangeslider
   ), 
   yaxis = list(
-    en = list(title = "", tickformat = ",.0f"),
-    el = list(title = "", tickformat = ",.0f")
+    en = list(title = "A-T Total", tickformat = ",.0f"),
+    el = list(title = "A-T Σύνολο", tickformat = ",.0f")
   ),
   use_annotations = TRUE,
   annotations = list( # for y-axis label to appear at the top, where the axis arrow ends
-    x = -0.03,
-    y = 1,
+    x = 0.0,
+    y = 0.95,
     xref = "paper",
     yref = "paper",
     showarrow = FALSE,
@@ -112,7 +113,7 @@ options_fig <- list(
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#800000' # bar color
+      bar_c = '#31576F' # bar color
     )    
   ),
   onRender = list(

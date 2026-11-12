@@ -67,7 +67,8 @@ options_fig <- list(
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 14             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -91,7 +92,7 @@ options_fig <- list(
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 120
+    itemwidth = 70
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -103,13 +104,14 @@ options_fig <- list(
     xaxis_la = 0,         # x-axis angle of labels
     xaxis_rs_v = FALSE,      # should a rangslider appear on the x-axis?
     tickformat = "%Y",
+    dtick = 2,
     xaxis_rs_t = "date",    # type of rangeslider
     xaxis_rs_c = "white",   # background color of rangeslider
     xaxis_rs_s = 0.03       # thicness of rangeslider
   ), 
   yaxis = list(
-    en = list(title = "tonnes", tickformat = ",.0f"),
-    el = list(title = "τόνοι", tickformat = ",.0f")    # full numbers with thousands separator
+    en = list(title = "Tonnes", tickformat = ",.0f"),
+    el = list(title = "Τόνοι", tickformat = ",.0f")    # full numbers with thousands separator
   ),
   use_annotations = TRUE,
   annotations = list( # for y-axis label to appear at the top, where the axis arrow ends
@@ -137,7 +139,7 @@ options_fig <- list(
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#059cfc' # bar color
+      bar_c = '#FFAD2D' # bar color
     ),
     list(
       en=list(
@@ -154,7 +156,7 @@ options_fig <- list(
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#F28500' # bar color 
+      bar_c = '#31576F' # bar color 
     ),
     list(
       en=list(
@@ -171,7 +173,7 @@ options_fig <- list(
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#a020f0' # bar color
+      bar_c = '#4FA3C1' # bar color
     ),
     list(
       en=list(
@@ -188,7 +190,7 @@ options_fig <- list(
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#e10600' # bar color
+      bar_c = '#7A8B99' # bar color
     ),
     list(
       en=list(
@@ -205,7 +207,7 @@ options_fig <- list(
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#4CBB17' # bar color
+      bar_c = '#6E8E3A' # bar color
     )
   ),
   onRender = list(

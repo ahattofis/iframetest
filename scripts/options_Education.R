@@ -64,7 +64,8 @@ options_fig <- list(
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 14             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -83,12 +84,12 @@ options_fig <- list(
   ),
   showlegend = TRUE,
   legend = list(
-    x = 1.02,
-    y = 0.5,
-    xanchor = "left",
-    yanchor = "middle",
-    itemwidth = 100,
-    tracegroupgap = 30
+    x = 0.5,
+    y = -0.07,
+    xanchor = "center",
+    yanchor = "top",
+    orientation = "h",
+    itemwidth = 70
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -104,8 +105,8 @@ options_fig <- list(
     xaxis_rs_s = 0.03       # thicness of rangeslider
   ), 
   yaxis = list(
-    en = list(title = "", tickformat = ",.0f"),
-    el = list(title = "", tickformat = ",.0f")    # full numbers with thousands separator
+    en = list(title = "Pupils / Students", tickformat = ",.0f"),
+    el = list(title = "Μαθητές / Φοιτητές", tickformat = ",.0f")    # full numbers with thousands separator
   ),
   use_annotations = TRUE,
   annotations = list( # for y-axis label to appear at the top, where the axis arrow ends
@@ -120,12 +121,12 @@ options_fig <- list(
   trace = list(
     list(
       en=list(
-        yaxis_h = "Pre-school &<br>pre-primary",  # y-axis header
+        yaxis_h = "Pre-school & pre-primary",  # y-axis header
         buttn_h = "" ,    # button header
         hover_h = "Pre-school & pre-primary"   # hover header (y-axis)
       ),
       el=list(
-        yaxis_h = "Προσχολική και<br>προδημοτική",  # y-axis header
+        yaxis_h = "Προσχολική και προδημοτική",  # y-axis header
         buttn_h = "" ,    # button header
         hover_h = "Προσχολική και προδημοτική"   # hover header (y-axis)
       ),
@@ -135,10 +136,10 @@ options_fig <- list(
       # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
-      line_c  = '#e10600',  # line color
+      line_c  = '#FFAD2D',  # line color
       line_s  = 2,            # line size
       point_t = 'cross',     # points type
-      point_c = '#e10600',  # points color
+      point_c = '#FFAD2D',  # points color
       point_s = 8             # points size
     ),
     list(
@@ -158,10 +159,10 @@ options_fig <- list(
       # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
-      line_c  = '#2ca02c',  # line color
+      line_c  = '#31576F',  # line color
       line_s  = 2,            # line size
       point_t = 'triangle-up',     # points type
-      point_c = '#2ca02c',  # points color
+      point_c = '#31576F',  # points color
       point_s = 8             # points size
       ),
       list(
@@ -181,10 +182,10 @@ options_fig <- list(
         # --- LINE GRAPH options  - in case of a line chart
         mode = 'lines+markers', # line mode
         line_t  = 'solid',      # line type
-        line_c  = '#a020f0',  # line color
+        line_c  = '#4FA3C1',  # line color
         line_s  = 2,            # line size
         point_t = 'circle',     # points type
-        point_c = '#a020f0',  # points color
+        point_c = '#4FA3C1',  # points color
         point_s = 8             # points size
         ),
         list(
@@ -204,10 +205,10 @@ options_fig <- list(
           # --- LINE GRAPH options  - in case of a line chart
           mode = 'lines+markers', # line mode
           line_t  = 'solid',      # line type
-          line_c  = '#059cfc',  # line color
+          line_c  = '#6E8E3A',  # line color
           line_s  = 2,            # line size
           point_t = 'square',     # points type
-          point_c = '#059cfc',  # points color
+          point_c = '#6E8E3A',  # points color
           point_s = 8             # points size
     )
   ),

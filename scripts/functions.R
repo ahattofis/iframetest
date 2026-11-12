@@ -201,7 +201,14 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
   
   fig <- layout(fig,
                 autosize = TRUE,
-                title = list(text=options_fig$title[[lang]]),
+                title = list(
+                  text = options_fig$title[[lang]],
+                  font = list(
+                    family = options_fig$fonts$font_t,
+                    size = options_fig$fonts$title_s, 
+                    color = options_fig$fonts$font_c
+                  )
+                ),
                 showlegend = options_fig$showlegend,
                 legend = if(options_fig$showlegend){
                   list(
@@ -253,10 +260,10 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
                       standoff = options_fig$gen$standoff
                     ),
                   hoverformat = options_fig$hover$hover_xf[[lang]],
-                  range = if(options_fig$gen$chart_type=="line"){
-                    c(initial_start, initial_end)
-                    }else{NULL},
-                  expand = options_fig$xaxis$xaxis_e,
+                  # range = if(options_fig$gen$chart_type=="line"){
+                  #   c(initial_start, initial_end)
+                  #   }else{NULL},
+                  expand = c(0.01, 0.01),
                   fixedrange = FALSE,
                   tickangle = options_fig$xaxis$xaxis_la,
                   tickformat = options_fig$xaxis$tickformat,
@@ -404,7 +411,5 @@ cystat_main_comboplots <- function(combination_name, lang, combo_subthemes, comb
   
   cat(paste0("----->> Combined Graph saved to: ", full_path_combo, "\n"))
 }
-
-
 
 

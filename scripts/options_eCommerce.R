@@ -51,7 +51,8 @@ options_fig <- list(
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 12             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -75,7 +76,7 @@ options_fig <- list(
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 120
+    itemwidth = 80
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -84,7 +85,7 @@ options_fig <- list(
   ),
   xaxis = list(
     xaxis_h = "",      # x-axis header
-    xaxis_la = -45,         # x-axis angle of labels
+    xaxis_la = 0,         # x-axis angle of labels
     xaxis_rs_v = FALSE,      # should a rangslider appear on the x-axis?
     xaxis_rs_t = "date",    # type of rangeslider
     xaxis_rs_c = "white",   # background color of rangeslider
@@ -96,8 +97,8 @@ options_fig <- list(
   ),
   use_annotations = TRUE,
   annotations = list( # for y-axis label to appear at the top, where the axis arrow ends
-    x = -0.05,
-    y = 0.5,
+    x = 0,
+    y = 1,
     xref = "paper",
     yref = "paper",
     showarrow = FALSE,

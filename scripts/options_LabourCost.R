@@ -75,7 +75,7 @@ options_fig <- list(
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 120
+    itemwidth = 80
   ),
   show_updmenu = FALSE,
   updmenus = list(

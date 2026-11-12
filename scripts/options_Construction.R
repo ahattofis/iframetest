@@ -61,14 +61,15 @@ options_fig <- list(
     el="Άδειες Οικοδομής κατά Επαρχία"
   ),
   gen=list(    
-    margin_b = list(l = 100, r = 100, b = 50, t = 50), # figure margin from border
+    margin_b = list(l = 100, r = 100, b = 50, t = 60), # figure margin from border
     standoff = 10,           # distance axes labels from axes
     chart_type = "line"     # "bar" or "line"
   ),
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 14             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -92,7 +93,7 @@ options_fig <- list(
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 120
+    itemwidth = 80
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -108,13 +109,13 @@ options_fig <- list(
     xaxis_rs_s = 0.03       # thicness of rangeslider
   ), 
   yaxis = list(
-    en = list(title = "", tickformat = ",.0f"),
-    el = list(title = "", tickformat = ",.0f")    # full numbers with thousands separator
+    en = list(title = "Dwelling Units", tickformat = ",.0f"),
+    el = list(title = "Αριθμός Οικιστικών Μονάδων", tickformat = ",.0f")    # full numbers with thousands separator
   ),
   use_annotations = TRUE,
   annotations = list( # for y-axis label to appear at the top, where the axis arrow ends
     x = 0,
-    y = 1,
+    y = 1.07,
     xref = "paper",
     yref = "paper",
     showarrow = FALSE,
@@ -139,10 +140,10 @@ options_fig <- list(
       # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
-      line_c  = '#800080',  # line color
+      line_c  = '#FFAD2D',  # line color
       line_s  = 2,            # line size
       point_t = 'cross',     # points type
-      point_c = '#800080',  # points color
+      point_c = '#FFAD2D',  # points color
       point_s = 8             # points size
     ),
     list(
@@ -162,10 +163,10 @@ options_fig <- list(
       # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
-      line_c  = '#B22222',  # line color
+      line_c  = '#31576F',  # line color
       line_s  = 2,            # line size
       point_t = 'triangle-up',     # points type
-      point_c = '#B22222',  # points color
+      point_c = '#31576F',  # points color
       point_s = 8             # points size
     ),
     list(
@@ -185,10 +186,10 @@ options_fig <- list(
       # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
-      line_c  = '#808000',  # line color
+      line_c  = '#4FA3C1',  # line color
       line_s  = 2,            # line size
       point_t = 'circle',     # points type
-      point_c = '#808000',  # points color
+      point_c = '#4FA3C1',  # points color
       point_s = 8             # points size
     ),
     list(
@@ -208,10 +209,10 @@ options_fig <- list(
       # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
-      line_c  = '#4169E1',  # line color
+      line_c  = '#7A8B99',  # line color
       line_s  = 2,            # line size
       point_t = 'square',     # points type
-      point_c = '#4169E1',  # points color
+      point_c = '#7A8B99',  # points color
       point_s = 8             # points size
     ),
     list(
@@ -231,10 +232,10 @@ options_fig <- list(
       # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
-      line_c  = '#F08000',  # line color
+      line_c  = '#6E8E3A',  # line color
       line_s  = 2,            # line size
       point_t = 'triangle-down',     # points type
-      point_c = '#F08000',  # points color
+      point_c = '#6E8E3A',  # points color
       point_s = 8             # points size
     )
   ),
