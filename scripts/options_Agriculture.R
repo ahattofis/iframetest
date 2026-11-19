@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "Agriculture",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Agriculture, Livestock, Fishing/Livestock/0320031E.px",
-    user_link = "https://cystatdb.cystat.gov.cy:443/sq/76c982b3-2952-45fa-82a8-fe60727e85c5"
+    user_link = "https://cystatdb.cystat.gov.cy:443/sq/834f81f0-17c0-4696-a127-203fd6a602d8"
   ),
   el=list(
     subtheme = "Agriculture",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Agriculture, Livestock, Fishing/Livestock/0320031G.px",
-    user_link = "https://cystatdb.cystat.gov.cy:443/sq/3358ee8c-123d-46c1-9400-3ec75ca6093a"
+    user_link = "https://cystatdb.cystat.gov.cy:443/sq/2254255e-5bfc-4d37-a5af-8ccd11a4dc01"
   )
 )
 
@@ -55,14 +55,14 @@ options_pxf <- list(
 # ######## FIGURE OPTIONS
 options_fig <- list(
   title = list(
-    en="Production of Meat, Annual",
-    el="Παραγωγή Κρέατος, Ετήσια"
+    en="Production of Meat",
+    el="Παραγωγή Κρέατος"
   ),
   gen=list(    
     margin_b = list(l = 100, r = 100, b = 50, t = 50), # figure margin from border
     standoff = 10,           # distance axes labels from axes
-    chart_type = "line"     # "bar" or "line"
-    # , bar_mode = "stack"      #  in case chart_type = "bar": stack or group
+    chart_type = "bar",     # "bar" or "line"
+    bar_mode = "stack"      #  in case chart_type = "bar": stack or group
   ),
   fonts = list(
     font_t = "Verdana",     # font type
@@ -128,12 +128,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "Pigs",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Pigs"   # hover header (y-axis)
+        hover_h = "Pigs",   # hover header (y-axis)
+        name = "Pigs"
       ),
       el=list(
         yaxis_h = "Χοίροι",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Χοίροι"   # hover header (y-axis)
+        hover_h = "Χοίροι",   # hover header (y-axis)
+        name = "Χοίροι"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
@@ -145,12 +147,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "Goats",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Goats"   # hover header (y-axis)
+        hover_h = "Goats",  # hover header (y-axis)
+        name = "Goats"
       ),
       el=list(
         yaxis_h = "Αιγοειδή",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Αιγοειδή"   # hover header (y-axis)
+        hover_h = "Αιγοειδή",   # hover header (y-axis)
+        name = "Αιγοειδή"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
@@ -162,12 +166,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "Sheep",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Sheep"   # hover header (y-axis)
+        hover_h = "Sheep",   # hover header (y-axis)
+        name = "Sheep"
       ),
       el=list(
         yaxis_h = "Πρόβατα",  # y-axis header
         buttn_h = "",   # button header
-        hover_h = "Πρόβατα"   # hover header (y-axis)
+        hover_h = "Πρόβατα",  # hover header (y-axis)
+        name = "Πρόβατα"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
@@ -179,12 +185,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "Poultry",  # y-axis header
         buttn_h = "" ,   # button header
-        hover_h = "Poultry"   # hover header (y-axis)
+        hover_h = "Poultry",  # hover header (y-axis)
+        name = "Poultry"
       ),
       el=list(
         yaxis_h = "Πουλερικά",  # y-axis header
         buttn_h = "" ,   # button header
-        hover_h = "Πουλερικά"   # hover header (y-axis)
+        hover_h = "Πουλερικά",   # hover header (y-axis)
+        name = "Πουλερικά"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
@@ -196,12 +204,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "Cattle",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Cattle"   # hover header (y-axis)
+        hover_h = "Cattle",   # hover header (y-axis)
+        name = "Cattle"
       ),
       el=list(
         yaxis_h = "Βοοειδή",  # y-axis header
         buttn_h = "" ,   # button header
-        hover_h = "Βοοειδή"   # hover header (y-axis)
+        hover_h = "Βοοειδή",   # hover header (y-axis)
+        name = "Βοοειδή"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...

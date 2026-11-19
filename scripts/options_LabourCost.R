@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "LabourCost",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Labour Cost and Earnings/Earnings/1110020E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/a841799d-9788-4130-bb0c-0dd2cc8e0e94"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/f8fc5c29-8a9e-41aa-a1a9-6c4c45fbacd2"
   ),
   el=list(
     subtheme = "LabourCost",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Labour Cost and Earnings/Earnings/1110020G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/4a15a51b-8329-4fb4-8cae-87bcfbed98bb"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/e2a62ec7-f3cd-4cfb-a4b2-69a52894b885"
   )
 )
 
@@ -51,7 +51,8 @@ options_fig <- list(
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 14             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -71,11 +72,11 @@ options_fig <- list(
   showlegend = TRUE,
   legend = list(
     x = 0.5,
-    y = -0.07,
+    y = -0.05,
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 80
+    itemwidth = 70
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -96,8 +97,8 @@ options_fig <- list(
   ),
   use_annotations = TRUE,
   annotations = list( # for y-axis label to appear at the top, where the axis arrow ends
-    x = -0.08,
-    y = 0.5,
+    x = -0.008,
+    y = 1.015,
     xref = "paper",
     yref = "paper",
     showarrow = FALSE,
@@ -109,18 +110,20 @@ options_fig <- list(
       en=list(
         yaxis_h = "Total",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Total"   # hover header (y-axis)
+        hover_h = "Total",   # hover header (y-axis)
+        name = "Total"
       ),
       el=list(
         yaxis_h = "Σύνολο",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Σύνολο"   # hover header (y-axis)
+        hover_h = "Σύνολο",   # hover header (y-axis)
+        name = "Σύνολο"
       ),
-      hover_f = "{y:.0f}",    # y-values display format
+      hover_f = "{y:.0f}€",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
 
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#ff7f0e', # bar color
+      bar_c = '#FFAD2D', # bar color
       
       # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
@@ -136,18 +139,20 @@ options_fig <- list(
       en=list(
         yaxis_h = "Males",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Males"   # hover header (y-axis)
-      ),
+        hover_h = "Males",   # hover header (y-axis)
+        name = "Males"
+      ), 
       el=list(
         yaxis_h = "Άντρες",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Άντρες"   # hover header (y-axis)
+        hover_h = "Άντρες",   # hover header (y-axis)
+        name = "Άντρες"
       ),
-      hover_f = "{y:.0f}",    # y-values display format
+      hover_f = "{y:.0f}€",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
 
       # --- BAR GRAPH options
-      bar_c = '#0a32e6', # bar color
+      bar_c = '#31576F', # bar color
       
       # --- LINE GRAPH options
       mode = 'lines+markers', # line mode
@@ -163,18 +168,20 @@ options_fig <- list(
       en=list(
         yaxis_h = "Females",  # y-axis header
         buttn_h = "",    # button header
-        hover_h = "Females"   # hover header (y-axis)
+        hover_h = "Females",   # hover header (y-axis)
+        name = "Females"
       ),
       el=list(
         yaxis_h = "Γυναίκες",  # y-axis header
         buttn_h = "",   # button header
-        hover_h = "Γυναίκες"   # hover header (y-axis)
+        hover_h = "Γυναίκες",   # hover header (y-axis)
+        name = "Γυναίκες"
       ),
-      hover_f = "{y:.0f}",    # y-values display format
+      hover_f = "{y:.0f}€",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
 
       # --- BAR GRAPH options
-      bar_c = '#ff66cc', # bar color
+      bar_c = '#4FA3C1', # bar color
       
       # --- LINE GRAPH options
       mode = 'lines+markers', # line mode

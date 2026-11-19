@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "ExternalTrade",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "External Trade/1000011E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/ab99daf1-aab6-461e-9b77-013e0001e31e"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/9e793f54-2c83-4e19-bc61-a58655326cd0"
   ),
   el=list(
     subtheme = "ExternalTrade",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "External Trade/1000011G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/73c5ec6d-3a0d-4d0d-8506-2c697091806f"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/a3e867e9-1dad-485e-a7f1-91ac6c16d181"
   )
 )
 
@@ -49,8 +49,8 @@ options_pxf <- list(
 # ######## FIGURE OPTIONS
 options_fig <- list(
   title = list(
-    en="Foreign Trade Summary Data, Annual",
-    el="Συνοπτικά Στοιχεία Εξωτερικού Εμπορίου, Ετήσια"
+    en="Foreign Trade Summary Data",
+    el="Συνοπτικά Στοιχεία Εξωτερικού Εμπορίου"
   ),
   gen=list(    
     margin_b = list(l = 100, r = 100, b = 50, t = 50), # figure margin from border
@@ -60,7 +60,8 @@ options_fig <- list(
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 14             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -79,12 +80,12 @@ options_fig <- list(
   ),
   showlegend = TRUE,
   legend = list(
-    x = 1.02,
-    y = 0.5,
-    xanchor = "left",
-    yanchor = "middle",
-    itemwidth = 100,
-    tracegroupgap = 30
+    x = 0.5,
+    y = -0.07,
+    xanchor = "center",
+    yanchor = "top",
+    orientation = "h",
+    itemwidth = 80
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -101,13 +102,13 @@ options_fig <- list(
     xaxis_rs_s = 0.03       # thicness of rangeslider
   ), 
   yaxis = list(
-    en = list(title = "", tickformat = ",.0f"),
-    el = list(title = "", tickformat = ",.0f")    # full numbers with thousands separator
+    en = list(title = "€ 000’s", tickformat = ",.0f"),
+    el = list(title = "€ 000’ς", tickformat = ",.0f")    # full numbers with thousands separator
   ),
   use_annotations = TRUE,
   annotations = list( # for y-axis label to appear at the top, where the axis arrow ends
     x = -0.03,
-    y = 1,
+    y = 1.01,
     xref = "paper",
     yref = "paper",
     showarrow = FALSE,
@@ -117,14 +118,16 @@ options_fig <- list(
   trace = list(
     list(
       en=list(
-        yaxis_h = "Imports",  # y-axis header
+        yaxis_h = "Imports  ",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Imports"   # hover header (y-axis)
+        hover_h = "Imports",   # hover header (y-axis)
+        name = "Imports"
       ),
       el=list(
-        yaxis_h = "Εισαγωγές",  # y-axis header
+        yaxis_h = "Εισαγωγές  ",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Εισαγωγές"   # hover header (y-axis)
+        hover_h = "Εισαγωγές",   # hover header (y-axis)
+        name = "Εισαγωγές"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'scatter',       # line graph, bar chart, etc...
@@ -132,22 +135,24 @@ options_fig <- list(
       # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
-      line_c  = '#4470AD',  # line color
+      line_c  = '#31576F',  # line color
       line_s  = 2,            # line size
       point_t = 'diamond',     # points type
-      point_c = '#1269C7',  # points color
+      point_c = '#31576F',  # points color
       point_s = 8             # points size
     ),
     list(
       en=list(
         yaxis_h = "Exports",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Exports"   # hover header (y-axis)
+        hover_h = "Exports",   # hover header (y-axis)
+        name = "Exports"
       ),
       el=list(
         yaxis_h = "Εξαγωγές",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Εξαγωγές"   # hover header (y-axis)
+        hover_h = "Εξαγωγές",   # hover header (y-axis)
+        name = "Εξαγωγές"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'scatter',       # line graph, bar chart, etc...
@@ -155,10 +160,10 @@ options_fig <- list(
       # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
-      line_c  = '#8B0000',  # line color
+      line_c  = '#FFAD2D',  # line color
       line_s  = 2,            # line size
       point_t = 'square',     # points type
-      point_c = '#8B0000',  # points color
+      point_c = '#FFAD2D',  # points color
       point_s = 8             # points size
     )
   ),

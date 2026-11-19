@@ -123,14 +123,16 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
       if(t == 1){
         vis <- TRUE # Make the first trace visible by default
       } else {
-        vis <- 'legendonly' # Hide subsequent traces by default
+        vis <- FALSE # Hide subsequent traces by default
       }
     }
     
+    is_horizontal <- !is.null(options_fig$trace[[t]]$orientation) && options_fig$trace[[t]]$orientation == 'h'
+    
     fig <- add_trace( fig,
                       data = dt_inn,
-                      x = dt_inn[[xcol]],
-                      y = dt_inn[[ycols[t]]],
+                      x = if(!is_horizontal) dt_inn[[xcol]] else dt_inn[[ycols[t]]],
+                      y = if(!is_horizontal) dt_inn[[ycols[t]]] else dt_inn[[xcol]],
                       legendgroup = as.character(t),                       
                       yaxis = if(!is.null(options_fig$trace[[t]]$yaxis)){ # secondary y-axis 
                           options_fig$trace[[t]]$yaxis
@@ -140,7 +142,7 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
                         options_fig$trace[[t]]$hover_f,
                         "</b>","<extra></extra>"),
                       type = options_fig$trace[[t]]$type,
-                      name = options_fig$trace[[t]][[lang]]$yaxis_h,
+                      name = options_fig$trace[[t]][[lang]]$name,
                       visible = if(options_fig$show_updmenu){vis}else{NULL},
 
                       orientation = options_fig$trace[[t]]$orientation, 
@@ -191,7 +193,7 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
       buttons_list[[t]] <- list(label = options_fig$trace[[t]][[lang]]$buttn_h,
                                 method = "update",
                                 args = list(list(visible = c(ycols==ycols[t])),
-                                            list(yaxis = list(title = list(text=options_fig$trace[[t]][[lang]]$yaxis_h, 
+                                            list(yaxis = list(title = list(text = "", 
                                                                            standoff = options_fig$gen$standoff)))))
     }
     if(options_fig$show_updmenu){
@@ -248,7 +250,14 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
                       active = 0,
                       xanchor = "left",
                       x = options_fig$updmenus$updm_x,
-                      buttons = buttons_list
+                      buttons = buttons_list,
+                      bordercolor = options_fig$updmenus$bordercolor,
+                      
+                      font = list(
+                        family = options_fig$fonts$buttons$family,
+                        size = options_fig$fonts$buttons$size,
+                        color = options_fig$fonts$buttons$color
+                      )
                     )
                   )
                 } else {NULL},     # --END-- updatemenus
@@ -290,7 +299,8 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
                     }else{NULL},
                   fixedrange = FALSE,
                   autorange = TRUE,                  
-                  tickformat = options_fig$yaxis[[lang]]$tickformat
+                  tickformat = options_fig$yaxis[[lang]]$tickformat,
+                  hoverformat = options_fig$hover$hover_yf[[lang]]
                 ), # --END-- yaxis
 
                 yaxis2 = if (!is.null(options_fig$yaxis2)){list(
@@ -308,10 +318,12 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
                   )
                 } else { NULL },    # --END-- yaxis2
 
-                annotations = if(options_fig$use_annotations){ 
-                    anos <- list(
-
-                      # for primary yaxis label to appear at the top, where the axis arrow ends
+                annotations = {
+                  anos <- list()
+                  
+                  # Primary y-axis label annotation (if enabled)
+                  if(options_fig$use_annotations){
+                    anos <- c(anos, list(
                       list(
                         x = options_fig$annotations$x,
                         y = options_fig$annotations$y,
@@ -327,8 +339,11 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
                           color = options_fig$fonts$font_c
                         )
                       )
-                      ,
-                      if(!is.null(options_fig$yaxis2)) {
+                    ))
+                    
+                    # Secondary y-axis label annotation (if enabled)
+                    if(!is.null(options_fig$yaxis2)) {
+                      anos <- c(anos, list(
                         list(
                           x = options_fig$annotations2$x,
                           y = options_fig$annotations2$y,
@@ -344,10 +359,58 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
                             color = options_fig$fonts$font_c
                           )
                         )
-                      }else{NULL}
-
-                    )
-                  } # --END-- annotations
+                      ))
+                    }
+                  }
+                  
+                  # Subtitle annotation (if provided in options_fig)
+                  if(!is.null(options_fig$subtitle)){
+                    anos <- c(anos, list(
+                      list(
+                        x = options_fig$subtitle_annotation$x,
+                        y = options_fig$subtitle_annotation$y,
+                        xref = options_fig$subtitle_annotation$xref,
+                        yref = options_fig$subtitle_annotation$yref,
+                        text = options_fig$subtitle[[lang]],
+                        showarrow = options_fig$subtitle_annotation$showarrow,
+                        xanchor = options_fig$subtitle_annotation$xanchor,
+                        yanchor = options_fig$subtitle_annotation$yanchor,
+                        font = list(
+                          family = options_fig$fonts$font_t,
+                          size = options_fig$fonts$font_s - 1, # Slightly smaller than body text
+                          color = options_fig$fonts$font_c
+                        )
+                      )
+                    ))
+                    
+                    # Note annotation (if provided in options_fig)
+                    if(!is.null(options_fig$note)){
+                      anos <- c(anos, list(
+                        list(
+                          x = options_fig$note_annotation$x,
+                          y = options_fig$note_annotation$y,
+                          xref = options_fig$note_annotation$xref,
+                          yref = options_fig$note_annotation$yref,
+                          text = options_fig$note[[lang]],
+                          showarrow = options_fig$note_annotation$showarrow,
+                          xanchor = options_fig$note_annotation$xanchor,
+                          yanchor = options_fig$note_annotation$yanchor,
+                          font = list(
+                            family = options_fig$fonts$font_t,
+                            size = options_fig$fonts$font_s - 2, 
+                            color = if(!is.null(options_fig$fonts$subtitle_c)) {
+                              options_fig$fonts$subtitle_c
+                            } else {
+                              options_fig$fonts$font_c
+                            }
+                          )
+                        )
+                      ))
+                    }
+                  }
+                  
+                  if(length(anos) > 0) anos else NULL
+                } # --END-- annotations
   )
   
   return(fig)

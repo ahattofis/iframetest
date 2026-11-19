@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "UseOfInternet",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Information Society/1500010E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/5c87da60-11eb-4d01-8955-472ec5d9bca0"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/90de73ba-bc52-4f13-975c-49644400c948"
   ),
   el=list(
     subtheme = "UseOfInternet",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Information Society/1500010G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/96bbba29-abbf-4afd-9324-297964534822"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/04fad5f6-38f3-4c87-bc53-3171a9595d1f"
   )
 )
 
@@ -39,8 +39,12 @@ options_pxf <- list(
 # ######## FIGURE OPTIONS
 options_fig <- list(
   title = list(
-    en = "Usage of Internet at Least Once a Week from<br>Persons Aged 16-74",
-    el = "Χρήση Διαδικτύου Τουλάχιστον Μια Φορά την Εβδομάδα<br>απο Άτομα Ηλικίας 16-74"
+    en = "Usage of Internet at Least Once a Week from Persons Aged 16-74",
+    el = "Χρήση Διαδικτύου Τουλάχιστον Μια Φορά την Εβδομάδα απο Άτομα Ηλικίας 16-74"
+  ),
+  subtitle = list(
+    en = "% in the corresponding population",
+    el = "% στον αντίστοιχο πληθυσμό"
   ),
   gen=list(
     margin_b = list(l = 100, r = 100, b = 50, t = 50), # figure margin from border
@@ -51,17 +55,18 @@ options_fig <- list(
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 12             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
-    hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
+    hover_t = "y unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
     hover_c = "black",  # hover font color
     hover_b = "black",  # hover border color
     hover_bg = "white",     # hover background color # Set to NULL to have separate background colors for each graph line/bar shown (if hover_t = "x")
-    hover_xf = list(
-      en="Year: %Y",
-      el="Έτος: %Y"
-    )      # hover format of x-axis data
+    hover_yf = list(
+      en = "Year: %Y",
+      el = "Έτος: %Y"
+    )      
   ),
   spikeline = list(
     spike_t = 'dash',      # spikeline type e.g. 'solid' OR 'dash'
@@ -75,7 +80,7 @@ options_fig <- list(
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 120
+    itemwidth = 70
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -84,8 +89,8 @@ options_fig <- list(
   ),
   use_annotations = TRUE,
   xaxis = list(
-    en = list(title = "% in the corresponding population"),
-    el = list(title = "% στον αντίστοιχο πληθυσμό"),
+    en = list(title = ""),
+    el = list(title = ""),
     xaxis_la = 0,         # x-axis angle of labels
     xaxis_rs_v = FALSE,      # should a rangslider appear on the x-axis?
     xaxis_rs_t = "date",    # type of rangeslider
@@ -93,8 +98,10 @@ options_fig <- list(
     xaxis_rs_s = 0.03       # thicness of rangeslider
   ),
   yaxis = list(
-    en = list(title = ""),
-    el = list(title = "")
+    en = list(title = "", tickformat = "%Y"),
+    el = list(title = "", tickformat = "%Y"),
+    type = "date",
+    autorange = "reversed"
   ),
   use_annotations = TRUE,
   annotations = list( # for y-axis label to appear at the top, where the axis arrow ends
@@ -106,45 +113,58 @@ options_fig <- list(
     xanchor = "center",
     yanchor = "top"
   ),
+  subtitle_annotation = list(
+    x = 0.5,
+    y = -0.07,               
+    xref = "paper",
+    yref = "paper",
+    showarrow = FALSE,
+    xanchor = "center",
+    yanchor = "top"
+  ),
   trace = list(
     list(
       en=list(
         yaxis_h = "Males",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Males"   # hover header (y-axis)
+        hover_h = "Males",   # hover header (y-axis)
+        name = "Άντρες"
       ),
       el=list(
         yaxis_h = "Άντρες",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Άντρες"   # hover header (y-axis)
+        hover_h = "Άντρες",   # hover header (y-axis)
+        name = "Άντρες"
       ),
-      hover_f = "{y:.0f}",    # y-values display format
+      hover_f = "{x:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
       
-      # orientation = 'h',  # horizontal bars
+      orientation = 'h',  # horizontal bars
       
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#00065F' # bar color
+      bar_c = '#31576F' # bar color
     )
     ,
     list(
       en=list(
         yaxis_h = "Females",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Females"   # hover header (y-axis)
+        hover_h = "Females",   # hover header (y-axis)
+        name = "Females"
       ),
       el=list(
         yaxis_h = "Γυναίκες",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Γυναίκες"   # hover header (y-axis)
+        hover_h = "Γυναίκες",   # hover header (y-axis)
+        name = "Γυναίκες"
       ),
-      hover_f = "{y:.0f}",    # y-values display format
+      hover_f = "{x:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
       
-      # orientation = 'h',
+      orientation = 'h',
       
       # --- BAR GRAPH options
-      bar_c = '#E60085' # bar color
+      bar_c = '#FFAD2D' # bar color
     )
   ),
   onRender = list(

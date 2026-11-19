@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "Environment",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Environment/1700010E.px",
-    user_link = "https://cystatdb.cystat.gov.cy:443/sq/47b332d5-c4bc-40cb-b765-f0ca74587d7d"
+    user_link = "https://cystatdb.cystat.gov.cy:443/sq/315ec604-a76c-461b-8a0b-47d178bba998"
   ),
   el=list(
     subtheme = "Environment",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Environment/1700010G.px",
-    user_link = "https://cystatdb.cystat.gov.cy:443/sq/4e252815-516a-45ab-a2cc-7473e1f38cd0"
+    user_link = "https://cystatdb.cystat.gov.cy:443/sq/5e034da4-5e07-441a-b8df-1107e1f9d8df"
   )
 )
 
@@ -65,7 +65,8 @@ options_fig <- list(
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 14             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -85,11 +86,11 @@ options_fig <- list(
   showlegend = TRUE,
   legend = list(
     x = 0.5,
-    y = -0.1,
+    y = -0.08,
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 120
+    itemwidth = 80
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -106,12 +107,12 @@ options_fig <- list(
     xaxis_rs_s = 0.03       # thicness of rangeslider
   ), 
   yaxis = list(
-    en = list(title = "", tickformat = ",.0f"),
-    el = list(title = "", tickformat = ",.0f")    # full numbers with thousands separator
+    en = list(title = "Thousand tonnes", tickformat = ",.0f"),
+    el = list(title = "Χιλιάδες τόνοι ", tickformat = ",.0f")    # full numbers with thousands separator
   ),
   use_annotations = TRUE,
   annotations = list( # for y-axis label to appear at the top, where the axis arrow ends
-    x = -0.03,
+    x = -0.01,
     y = 1.05,
     xref = "paper",
     yref = "paper",
@@ -122,71 +123,79 @@ options_fig <- list(
   trace = list(
     list(
       en=list(
-        yaxis_h = "Amount of waste used<br>for recycling, total",  # y-axis header
+        yaxis_h = "Amount of waste used for recycling, total",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Amount of waste used<br>for recycling, total"   # hover header (y-axis)
+        hover_h = "Amount of waste used for<br>recycling, total",   # hover header (y-axis)
+        name = "Amount of waste used for recycling, total"
       ),
       el=list(
-        yaxis_h = "Ποσότητα αποβλήτων που<br>προωθήθηκε για ανακύκλωση, σύνολο",  # y-axis header
+        yaxis_h = "Ποσότητα αποβλήτων που προωθήθηκε για ανακύκλωση, σύνολο",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Ποσότητα αποβλήτων που<br>προωθήθηκε για ανακύκλωση, σύνολο"   # hover header (y-axis)
+        hover_h = "Ποσότητα αποβλήτων που προωθήθηκε<br>για ανακύκλωση, σύνολο",   # hover header (y-axis)
+        name = "Ποσότητα αποβλήτων που προωθήθηκε για ανακύκλωση, σύνολο"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#8c564b' # bar color
+      bar_c = '#FFAD2D' # bar color
     ),
     list(
       en=list(
-        yaxis_h = "Amount of waste used<br>for energy recovery, total",  # y-axis header
+        yaxis_h = "Amount of waste used for energy recovery, total",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Amount of waste used<br>for energy recovery, total"   # hover header (y-axis)
+        hover_h = "Amount of waste used for<br>energy recovery, total",   # hover header (y-axis)
+        name = "Amount of waste used for energy recovery, total"
       ),
       el=list(
-        yaxis_h = "Ποσότητα αποβλήτων για<br>ανάκτηση ενέργειας, σύνολο",  # y-axis header
+        yaxis_h = "Ποσότητα αποβλήτων για ανάκτηση ενέργειας, σύνολο",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Ποσότητα αποβλήτων για<br>ανάκτηση ενέργειας, σύνολο"   # hover header (y-axis)
+        hover_h = "Ποσότητα αποβλήτων για ανάκτηση<br>ενέργειας, σύνολο",   # hover header (y-axis)
+        name =  "Ποσότητα αποβλήτων για ανάκτηση ενέργειας, σύνολο"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#F28500' # bar color 
+      bar_c = '#4FA3C1' # bar color 
     ),
     list(
       en=list(
-        yaxis_h = "Amount of waste sorted for<br>composting, used for composting",  # y-axis header
+        yaxis_h = "Amount of waste sorted for composting",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Amount of waste sorted for<br>composting, used for composting"   # hover header (y-axis)
+        hover_h = "Amount of waste sorted for<br>composting",   # hover header (y-axis)
+        name = "Amount of waste sorted for composting   "
       ),
       el=list(
-        yaxis_h = "Ποσότητα αποβλήτων για<br>κομποστοποίηση, που χρησιμοποιήθηκαν",  # y-axis header
+        yaxis_h = "Ποσότητα αποβλήτων από χωριστή διαλογή που χρησιμοποιήθηκε για παραγωγή κόμποστ",  # y-axis header
         buttn_h = "",   # button header
-        hover_h = "Ποσότητα αποβλήτων για<br>κομποστοποίηση, που χρησιμοποιήθηκαν"   # hover header (y-axis)
+        hover_h = "Ποσότητα αποβλήτων από χωριστή διαλογή<br>που χρησιμοποιήθηκε για παραγωγή κόμποστ",   # hover header (y-axis)
+        name = "Ποσότητα αποβλήτων από χωριστή διαλογή που χρησιμοποιήθηκε για παραγωγή κόμποστ"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#111184' # bar color
+      bar_c = '#6E8E3A' # bar color
     ),
     list(
       en=list(
-        yaxis_h = "Amount of waste disposed<br>to landfills",  # y-axis header
+        yaxis_h = "Amount of waste disposed to landfills",  # y-axis header
         buttn_h = "" ,   # button header
-        hover_h = "Amount of waste disposed<br>to landfills"   # hover header (y-axis)
+        hover_h = "Amount of waste disposed<br>to landfills",   # hover header (y-axis)
+        name = "Amount of waste disposed to landfills"
       ),
       el=list(
-        yaxis_h = "Ποσότητα αποβλήτων που<br>κατέληξε σε χώρους απόρριψης",  # y-axis header
+        yaxis_h = "Ποσότητα αποβλήτων που κατέληξε σε χώρους απόρριψης",  # y-axis header
         buttn_h = "" ,   # button header
-        hover_h = "Ποσότητα αποβλήτων που<br>κατέληξε σε χώρους απόρριψης"   # hover header (y-axis)
+        hover_h = "Ποσότητα αποβλήτων που κατέληξε σε<br>χώρους απόρριψης",   # hover header (y-axis)
+        name = "Ποσότητα αποβλήτων που κατέληξε σε χώρους απόρριψης"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#4682B4' # bar color
+      bar_c = '#31576F' # bar color
     )
   ),
   onRender = list(

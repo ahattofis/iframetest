@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "Energy",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Energy/0900011E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/5fd5590a-d1cd-4a67-9a12-9ec76dcf9574"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/868b95e4-f4cb-4688-92c9-8d5e0c4b4ae1"
   ),
   el=list(
     subtheme = "Energy",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Energy/0900011G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/a97f1acd-7517-43dc-8c84-28c5e138b528"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/f3b5fd75-37ce-40b0-8503-1a7826dc5279"
   )
 )
 
@@ -45,8 +45,8 @@ options_pxf <- list(
 # ######## FIGURE OPTIONS
 options_fig <- list(
   title = list(
-    en = "Sales and Stocks of Petroleum Products, Annual",
-    el = "Πωλήσεις και Αποθέματα Πετρελαιοειδών, Ετήσια"
+    en = "Sales and Stocks of Petroleum Products",
+    el = "Πωλήσεις και Αποθέματα Πετρελαιοειδών"
   ),
   gen=list(
     margin_b = list(l = 100, r = 100, b = 50, t = 60), # figure margin from border
@@ -82,7 +82,7 @@ options_fig <- list(
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 70
+    itemwidth = 60
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -99,8 +99,8 @@ options_fig <- list(
     xaxis_rs_s = 0.03       # thicness of rangeslider
   ),
   yaxis = list(
-    en = list(title = "Sales", tickformat = ",.0f"),
-    el = list(title = "Πωλήσεις", tickformat = ",.0f")    # full numbers with thousands separator
+    en = list(title = "Tonnes", tickformat = ",.0f"),
+    el = list(title = "Τόνοι", tickformat = ",.0f")    # full numbers with thousands separator
   ),
   use_annotations = TRUE,
   annotations = list( # for y-axis label to appear at the top, where the axis arrow ends
@@ -117,12 +117,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "Sales from filling stations",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Sales from filling stations"   # hover header (y-axis)
+        hover_h = "Sales from filling stations",   # hover header (y-axis)
+        name = "Sales from filling stations"
       ),
       el=list(
         yaxis_h = "Πωλήσεις από πρατήρια πετρελαιοειδών",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Πωλήσεις από πρατήρια πετρελαιοειδών"   # hover header (y-axis)
+        hover_h = "Πωλήσεις από πρατήρια πετρελαιοειδών",   # hover header (y-axis)
+        name = "Πωλήσεις από πρατήρια πετρελαιοειδών"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
@@ -134,12 +136,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "Total sales",  # y-axis header
         buttn_h = "",    # button header
-        hover_h = "Total sales"   # hover header (y-axis)
+        hover_h = "Total sales",   # hover header (y-axis)
+        name = "Total sales"
       ),
       el=list(
         yaxis_h = "Ολικές Πωλήσεις",  # y-axis header
         buttn_h = "",   # button header
-        hover_h = "Ολικές Πωλήσεις"   # hover header (y-axis)
+        hover_h = "Ολικές Πωλήσεις",   # hover header (y-axis)
+        name = "Ολικές Πωλήσεις"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...

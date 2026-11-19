@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "Innovation",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Innovation/1300010E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/d02a1677-eddb-4e41-b8b8-bda30ed40584"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/6aa41304-fcd5-4455-8fcf-79f02f6e9afd"
   ),
   el=list(
     subtheme = "Innovation",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Innovation/1300010G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/4d8a2398-f7af-4d54-b796-f4a6e9bd9844"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/8673178a-c2ec-421f-9bd1-c9259835449c"
   )
 )
 
@@ -51,7 +51,8 @@ options_fig <- list(
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 14             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -75,7 +76,7 @@ options_fig <- list(
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 120
+    itemwidth = 70
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -96,8 +97,8 @@ options_fig <- list(
   ),
   use_annotations = TRUE,
   annotations = list( # for y-axis label to appear at the top, where the axis arrow ends
-    x = -0.05,
-    y = 0.5,
+    x = -0.004,
+    y = 1.015,
     xref = "paper",
     yref = "paper",
     showarrow = FALSE,
@@ -109,54 +110,60 @@ options_fig <- list(
       en=list(
         yaxis_h = "Total",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Total"   # hover header (y-axis)
+        hover_h = "Total",   # hover header (y-axis)
+        name = "Total"
       ),
       el=list(
         yaxis_h = "Σύνολο",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Σύνολο"   # hover header (y-axis)
+        hover_h = "Σύνολο",   # hover header (y-axis)
+        name = "Σύνολο"
       ),
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#ff7f0e' # bar color
+      bar_c = '#FFAD2D' # bar color
     )
     ,
     list(
       en=list(
         yaxis_h = "Industry",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Industry"   # hover header (y-axis)
+        hover_h = "Industry",   # hover header (y-axis)
+        name = "Industry"
       ),
       el=list(
         yaxis_h = "Βιομηχανία",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Βιομηχανία"   # hover header (y-axis)
+        hover_h = "Βιομηχανία",   # hover header (y-axis)
+        name = "Βιομηχανία"
       ),
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options
-      bar_c = '#39ace7' # bar color
+      bar_c = '#31576F' # bar color
     )
     ,
     list(
       en=list(
         yaxis_h = "Services",  # y-axis header
         buttn_h = "",    # button header
-        hover_h = "Services"   # hover header (y-axis)
+        hover_h = "Services",   # hover header (y-axis)
+        name = "Services"
       ),
       el=list(
         yaxis_h = "Υπηρεσίες",  # y-axis header
         buttn_h = "",   # button header
-        hover_h = "Υπηρεσίες"   # hover header (y-axis)
+        hover_h = "Υπηρεσίες",   # hover header (y-axis)
+        name = "Υπηρεσίες"
       ),
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options
-      bar_c = '#3c8d0d'
+      bar_c = '#4FA3C1'
     )
   ),
   onRender = list(

@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "BusinessRegister",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Business Register/1600010E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/04710571-41a8-4819-a318-c939113560d9"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/0a5b19fd-fba0-4562-9067-ee80626b9e2c"
   ),
   el=list(
     subtheme = "BusinessRegister",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Business Register/1600010G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/98c3c518-81fc-431f-9e76-f491901b702b"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/0b801667-5f53-421b-97e3-fe08370a340d"
   )
 )
 
@@ -39,8 +39,8 @@ options_pxf <- list(
 # ######## FIGURE OPTIONS
 options_fig <- list(
   title = list(
-    en = "Number of Establishments by Economic Activity NACE (Rev. 2), Annual",
-    el = "Αριθμός Υποστατικών κατά Οικονομική Δραστηριότητα NACE (Αναθ. 2), Ετήσια"
+    en = "Total Number of Establishments",
+    el = "Συνολικός Αριθμός Υποστατικών"
   ),
   gen=list(    
     margin_b = list(l = 100, r = 100, b = 50, t = 50), # figure margin from border
@@ -84,8 +84,8 @@ options_fig <- list(
     xaxis_rs_s = 0.03       # thicness of rangeslider
   ), 
   yaxis = list(
-    en = list(title = "A-T Total", tickformat = ",.0f"),
-    el = list(title = "A-T Σύνολο", tickformat = ",.0f")
+    en = list(title = "", tickformat = ",.0f"),
+    el = list(title = "", tickformat = ",.0f")
   ),
   use_annotations = TRUE,
   annotations = list( # for y-axis label to appear at the top, where the axis arrow ends

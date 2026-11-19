@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "NationalAccounts",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "National Accounts/Annual National Accounts/0610010E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/1a053b3e-6a2b-4f65-bf72-12fc2c7b8e4b"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/ebb59a2d-e046-494d-98a6-d418d0e2ec5c"
   ),
   el=list(
     subtheme = "NationalAccounts",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "National Accounts/Annual National Accounts/0610010G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/859a56d7-7d7a-4b3b-a26d-5f9394084c03"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/ba3c8170-5afa-4bc9-8fb1-ba548e03396c"
   )
 )
 
@@ -50,6 +50,10 @@ options_fig <- list(
     en = "Gross Domestic Product at Current Prices and Annual Change in Real Terms",
     el = "Ακαθάριστο Εγχώριο Προϊόν σε Τρέχουσες Τιμές και Ετήσια Μεταβολή σε Πραγματικούς Όρους"
   ),
+  subtitle = list(
+    en="2025 provisional data",
+    el="2025 προκαταρκτικά στοιχεία"
+  ),
   gen=list(
     margin_b = list(l = 100, r = 100, b = 50, t = 50), # figure margin from border
     standoff = 10,           # distance axes labels from axes
@@ -58,7 +62,8 @@ options_fig <- list(
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 14             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -82,7 +87,7 @@ options_fig <- list(
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 120
+    itemwidth = 60
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -108,8 +113,8 @@ options_fig <- list(
   ),
   use_annotations = TRUE,
   annotations = list(         # primary y-axis
-    x = -0.05,
-    y = 1,
+    x = -0.01,
+    y = 1.05,
     xref = "paper",
     yref = "paper",
     showarrow = FALSE,
@@ -117,8 +122,17 @@ options_fig <- list(
     yanchor = "top"
   ),
   annotations2 = list(        # secondary y-axis
-    x = 1.05, 
-    y = 1,
+    x = 1.025, 
+    y = 1.05,
+    xref = "paper",
+    yref = "paper",
+    showarrow = FALSE,
+    xanchor = "center",
+    yanchor = "top"
+  ),
+  subtitle_annotation = list(
+    x = 0.5,
+    y = 1.02,
     xref = "paper",
     yref = "paper",
     showarrow = FALSE,
@@ -130,12 +144,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "GDP at Current Prices (Euro million)",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "GDP at Current Prices (Euro million)"   # hover header (y-axis)
+        hover_h = "GDP at Current Prices (Euro million)",   # hover header (y-axis)
+        name = "GDP at Current Prices (Euro million)"
       ),
       el=list(
         yaxis_h = "ΑΕΠ σε Τρέχουσες Τιμές (Ευρώ εκ.)",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "ΑΕΠ σε Τρέχουσες Τιμές (Ευρώ εκ.)"   # hover header (y-axis)
+        hover_h = "ΑΕΠ σε Τρέχουσες Τιμές (Ευρώ εκ.)",   # hover header (y-axis)
+        name = "ΑΕΠ σε Τρέχουσες Τιμές (Ευρώ εκ.)"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'scatter',       # line graph, bar chart, etc...
@@ -144,28 +160,30 @@ options_fig <- list(
       mode = 'lines', # line mode
       yaxis = "y2",
       line_t  = 'solid',      # line type
-      line_c  = '#2ca02c',  # line color
+      line_c  = '#FFAD2D',  # line color
       line_s  = 3,            # line size
       point_t = 'triangle-up',     # points type
-      point_c = '#E06E04',  # points color
+      point_c = '#FFAD2D',  # points color
       point_s = 10             # points size
     ),
     list(
       en=list(
         yaxis_h = "Annual Change in Real Terms (%)",  # y-axis header
         buttn_h = "",    # button header
-        hover_h = "Annual Change in Real Terms (%)"   # hover header (y-axis)
+        hover_h = "Annual Change in Real Terms (%)",   # hover header (y-axis)
+        name = "Annual Change in Real Terms (%)"
       ),
       el=list(
         yaxis_h = "Ετήσια Μεταβολή σε Πραγματικούς Όρους (%)",  # y-axis header
         buttn_h = "",   # button header
-        hover_h = "Ετήσια Μεταβολή σε Πραγματικούς Όρους (%)"   # hover header (y-axis)
+        hover_h = "Ετήσια Μεταβολή σε Πραγματικούς Όρους (%)",   # hover header (y-axis)
+        name = "Ετήσια Μεταβολή σε Πραγματικούς Όρους (%)"
       ),
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options
-      bar_c = '#1269C7'  # bar color
+      bar_c = '#31576F'  # bar color
     )
   ),
   onRender = list(

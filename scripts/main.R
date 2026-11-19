@@ -28,7 +28,7 @@ dir.create( graph_dir <- here::here("docs/"), recursive=TRUE, showWarnings=FALSE
 dir.create( logs_dir <- here::here("logs/"), recursive=TRUE, showWarnings=FALSE)
 csv_changes <- paste0(logs_dir,"/DT_Hashes.csv")
 
-# subthemes <- c("Agriculture")
+# subthemes <- c("Tourism_Annual_Numbers", "Tourism_Annual_Change")
 subthemes <- c("Agriculture", "BusinessRegister", "Construction",
                 "eCommerce", "Education", "Energy",
                 "Environment", "ExternalTrade", "Health",
@@ -36,14 +36,16 @@ subthemes <- c("Agriculture", "BusinessRegister", "Construction",
                 "LabourCost", "LabourForce", "LifeExpectancy",
                 "NationalAccounts", "Population", "PublicFinance",
                 "RandD", "Services", "SocialIndicators",
-                "Tourism", "Trade", "UseOfInternet"
+                "Tourism_Annual_Numbers", "Tourism_Annual_Change", 
+                "Trade", "UseOfInternet"
               )
 langs <- c("en", "el")
 
 
 combo_subthemes <- list(
   "Demographics" = list("Population", "LifeExpectancy"),
-  "InformationSociety" = list("UseOfInternet", "eCommerce")
+  "InformationSociety" = list("UseOfInternet", "eCommerce"),
+  "Tourism" = list("Tourism_Annual_Numbers", "Tourism_Annual_Change")
 )
 combo_plots_list <- list() # all_plots
 
@@ -56,14 +58,14 @@ logger::log_info(
 
 # ##############################################################################
 # [E] GET DATA
-# logger::log_info("----->> Load previous Hashes file...")
-# if(file.exists(csv_changes)) {
-#   previous_hashes <- fread(csv_changes, colClasses=c("character"))
-#   setorderv(previous_hashes, c("graph","language","datetime"), c(1,1,-1))
-#   current_hashes <- copy(previous_hashes)
-# }else{
-#   current_hashes <- data.table()
-# }
+logger::log_info("----->> Load previous Hashes file...")
+if(file.exists(csv_changes)) {
+  previous_hashes <- fread(csv_changes, colClasses=c("character"))
+  setorderv(previous_hashes, c("graph","language","datetime"), c(1,1,-1))
+  current_hashes <- copy(previous_hashes)
+}else{
+  current_hashes <- data.table()
+}
 current_hashes <- data.table()
 
 for(subtheme in subthemes){
@@ -255,21 +257,21 @@ for(subtheme in subthemes){
   
 } # --- END "subthemes"
 
-# logger::log_info("")
-# logger::log_info("------------------------------------------------------------------------------")
-# logger::log_info("--- COMBINATION PLOTS:")
-# for(combination_name in names(combo_subthemes)){
-#   logger::log_info(paste0("-   COMBO SUBTHEME: ",combination_name))
-#   for(lang in langs){
-# 
-#     cystat_main_comboplots(combination_name = combination_name, 
-#                             lang = lang, 
-#                             combo_subthemes = combo_subthemes, 
-#                             combo_plots_list = combo_plots_list,
-#                             graph_dir = graph_dir)
-#     
-#   }
-# }
+logger::log_info("")
+logger::log_info("------------------------------------------------------------------------------")
+logger::log_info("--- COMBINATION PLOTS:")
+for(combination_name in names(combo_subthemes)){
+  logger::log_info(paste0("-   COMBO SUBTHEME: ",combination_name))
+  for(lang in langs){
+
+    cystat_main_comboplots(combination_name = combination_name,
+                            lang = lang,
+                            combo_subthemes = combo_subthemes,
+                            combo_plots_list = combo_plots_list,
+                            graph_dir = graph_dir)
+
+  }
+}
 
 
 data.table::fwrite(current_hashes, file=csv_changes, sep=";")

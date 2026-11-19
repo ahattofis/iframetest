@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "Health",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Health/Summary Tables/2100011E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/d1663f8f-c920-43f4-b3cc-c69de2d1b448"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/0a798355-8c30-4c8e-ba37-e25a094e4029"
   ),
   el=list(
     subtheme = "Health",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Health/Summary Tables/2100011G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/4aed9393-131c-4a4d-b7ad-f9baa0922229"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/620cb6c9-b325-48a1-ab46-f3014b97713c"
   )
 )
 
@@ -51,7 +51,8 @@ options_fig <- list(
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 14             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -71,11 +72,11 @@ options_fig <- list(
   showlegend = TRUE,
   legend = list(
     x = 0.5,
-    y = -0.07,
+    y = -0.05,
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 80
+    itemwidth = 50
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -92,13 +93,13 @@ options_fig <- list(
     xaxis_rs_s = 0.03       # thicness of rangeslider
   ),
   yaxis = list(
-    en = list(title = ""),
-    el = list(title = "")
+    en = list(title = "Persons "),
+    el = list(title = "Άτομα ")
   ),
   use_annotations = TRUE,
   annotations = list( # for y-axis label to appear at the top, where the axis arrow ends
-    x = -0.08,
-    y = 0.5,
+    x = 0.01,
+    y = 1.01,
     xref = "paper",
     yref = "paper",
     showarrow = FALSE,
@@ -110,54 +111,60 @@ options_fig <- list(
       en=list(
         yaxis_h = "Persons per Doctor",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Persons per Doctor"   # hover header (y-axis)
+        hover_h = "Persons per Doctor",   # hover header (y-axis)
+        name = "Persons per Doctor"
       ),
       el=list(
         yaxis_h = "Άτομα ανά Ιατρό",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Άτομα ανά Ιατρό"   # hover header (y-axis)
+        hover_h = "Άτομα ανά Ιατρό",   # hover header (y-axis)
+        name = "Άτομα ανά Ιατρό"
       ),
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
 
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#ff7f0e' # bar color
+      bar_c = '#31576F' # bar color
     )
     ,
     list(
       en=list(
         yaxis_h = "Persons per Nurse",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Persons per Nurse"   # hover header (y-axis)
+        hover_h = "Persons per Nurse",   # hover header (y-axis)
+        name = "Persons per Nurse"
       ),
       el=list(
         yaxis_h = "Άτομα ανά Νοσηλευτή",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Άτομα ανά Νοσηλευτή"   # hover header (y-axis)
+        hover_h = "Άτομα ανά Νοσηλευτή",   # hover header (y-axis)
+        name = "Άτομα ανά Νοσηλευτή"
       ),
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
 
       # --- BAR GRAPH options
-      bar_c = '#560591' # bar color
+      bar_c = '#4FA3C1' # bar color
     )
     ,
     list(
       en=list(
         yaxis_h = "Persons per Hospital Bed",  # y-axis header
         buttn_h = "",    # button header
-        hover_h = "Persons per Hospital Bed"   # hover header (y-axis)
+        hover_h = "Persons per Hospital Bed",   # hover header (y-axis)
+        name = "Persons per Hospital Bed"
       ),
       el=list(
         yaxis_h = "Άτομα ανά Νοσοκομειακή Κλίνη",  # y-axis header
         buttn_h = "",   # button header
-        hover_h = "Άτομα ανά Νοσοκομειακή Κλίνη"   # hover header (y-axis)
+        hover_h = "Άτομα ανά Νοσοκομειακή Κλίνη",   # hover header (y-axis)
+        name = "Άτομα ανά Νοσοκομειακή Κλίνη"
       ),
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
 
       # --- BAR GRAPH options
-      bar_c = '#568203' # bar color
+      bar_c = '#FFAD2D' # bar color
     )
   ),
   onRender = list(

@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "eCommerce",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Information Society/ICT Usage and E-commerce in Enterprises/e-Commerce/1532010E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/4c4a7481-e867-4b0b-944b-09db5a91749a"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/91935bc5-64d5-4aba-9405-7d8154e7262b"
   ),
   el=list(
     subtheme = "eCommerce",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Information Society/ICT Usage and E-commerce in Enterprises/e-Commerce/1532010G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/75e915f1-0431-459f-a3e6-ea8231f634c2"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/34b8df2b-a452-4e57-b003-8a37a0b824c7"
   )
 )
 
@@ -39,11 +39,19 @@ options_pxf <- list(
 # ######## FIGURE OPTIONS
 options_fig <- list(
   title = list(
-    en="E-Commerce, Web Sales, Annual",
-    el="Πωλήσεις Μέσω Ιστότοπου ή Εφαρμογών, Ετήσια"
+    en="E-Commerce, Web Sales",
+    el="Πωλήσεις Μέσω Ιστότοπου ή Εφαρμογών"
+  ),
+  subtitle = list(
+    en="(% on total number of enterprises with 10+ employees)",
+    el="(% στο σύνολο των επιχειρήσεων με 10+ απασχολούμενους)"
+  ),
+  note = list(
+    en="The reference period is the preceding financial year (e.g. the data shown for 2004 refer to 2003).",
+    el="Η περίοδος αναφοράς είναι το προηγούμενο οικονομικό έτος (π.χ. στο 2004 παρουσιάζονται στοιχεία για το 2003)."
   ),
   gen=list(    
-    margin_b = list(l = 100, r = 100, b = 50, t = 50), # figure margin from border
+    margin_b = list(l = 100, r = 100, b = 60, t = 50), # figure margin from border
     standoff = 10,           # distance axes labels from axes
     chart_type = "line",    # "bar" or "line"
     bar_mode = ""           #  in case chart_type = "bar": stack or group
@@ -105,6 +113,24 @@ options_fig <- list(
     xanchor = "right",
     yanchor = "middle"
   ),
+  subtitle_annotation = list(
+    x = 0.5,
+    y = 1.035,
+    xref = "paper",
+    yref = "paper",
+    showarrow = FALSE,
+    xanchor = "center",
+    yanchor = "top"
+  ),
+  note_annotation = list(
+    x = 0.5,
+    y = -0.15,      
+    xref = "paper",
+    yref = "paper",
+    showarrow = FALSE,
+    xanchor = "center",
+    yanchor = "top"
+  ),
   trace = list(
     list(
       en=list(
@@ -123,7 +149,7 @@ options_fig <- list(
       # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines', # line mode
       line_t  = 'solid',      # line type
-      line_c  = '#F28500',  # line color
+      line_c  = '#FFAD2D',  # line color
       line_s  = 2            # line size
     )
     

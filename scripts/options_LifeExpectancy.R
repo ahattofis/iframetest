@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "LifeExpectancy",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Population/Deaths/1830226E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/c6a07dc6-4252-48c1-8e0a-4131be3dcbbc"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/d91d831c-bcff-4dfd-b061-1f25fcea8ca8"
   ),
   el=list(
     subtheme = "LifeExpectancy",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Population/Deaths/1830226G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/4d8a2398-f7af-4d54-b796-f4a6e9bd9844"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/a63bce5c-c90f-4f99-94b9-f7d73cb67fbf"
   )
 )
 
@@ -51,7 +51,8 @@ options_fig <- list(
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 12             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -75,7 +76,7 @@ options_fig <- list(
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 120
+    itemwidth = 70
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -109,12 +110,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "Males",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Males"   # hover header (y-axis)
+        hover_h = "Males",   # hover header (y-axis)
+        name = "Males"
       ),
       el=list(
         yaxis_h = "Άντρες",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Άντρες"   # hover header (y-axis)
+        hover_h = "Άντρες",   # hover header (y-axis)
+        name = "Άντρες"
       ),
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
@@ -122,19 +125,21 @@ options_fig <- list(
       # orientation = 'h',  # horizontal bars
       
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#00065F' # bar color
+      bar_c = '#FFAD2D' # bar color
     )
     ,
     list(
       en=list(
         yaxis_h = "Females",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Females"   # hover header (y-axis)
+        hover_h = "Females",   # hover header (y-axis)
+        name = "Females"
       ),
       el=list(
         yaxis_h = "Γυναίκες",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Γυναίκες"   # hover header (y-axis)
+        hover_h = "Γυναίκες",   # hover header (y-axis)
+        name = "Γυναίκες"
       ),
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
@@ -142,7 +147,7 @@ options_fig <- list(
       # orientation = 'h',
       
       # --- BAR GRAPH options
-      bar_c = '#E60085' # bar color
+      bar_c = '#31576F' # bar color
     )
   ),
   onRender = list(

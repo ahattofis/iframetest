@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "Inflation",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Price Indices/Consumer Price Index/0410050E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/67ef91a3-0296-4040-a059-0701223b68a0"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/f61d849f-be51-4c68-85dd-a408aa015df5"
   ),
   el=list(
     subtheme = "Inflation",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Price Indices/Consumer Price Index/0410050G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/8c2b489f-78c9-4b88-ad1d-27d8e71f2819"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/aefb019e-ef23-42ee-8576-681a58058bad"
   )
 )
 
@@ -51,7 +51,8 @@ options_fig <- list(
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 14             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -71,11 +72,11 @@ options_fig <- list(
   showlegend = FALSE,
   legend = list(
     x = 0.5,
-    y = -0.1,
+    y = -0.07,
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 120
+    itemwidth = 70
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -96,8 +97,8 @@ options_fig <- list(
   ),
   use_annotations = TRUE,
   annotations = list( # for y-axis label to appear at the top, where the axis arrow ends
-    x = -0.08,
-    y = 0.5,
+    x = -0.008,
+    y = 1.015,
     xref = "paper",
     yref = "paper",
     showarrow = FALSE,
@@ -109,12 +110,12 @@ options_fig <- list(
       en=list(
         yaxis_h = "%",  # y-axis header
         buttn_h = "",    # button header
-        hover_h = "Inflation(%)"  # hover header (y-axis)
+        hover_h = "Inflation (%)"  # hover header (y-axis)
       ),
       el=list(
         yaxis_h = "%",  # y-axis header
         buttn_h = "",    # button header
-        hover_h = "Πληθωρισμός(%)"  # hover header (y-axis)
+        hover_h = "Πληθωρισμός (%)"  # hover header (y-axis)
       ),
       hover_f = "{y:.1f}",    # y-values display format
       type = 'scatter',       # line graph, bar chart, etc...
@@ -125,7 +126,7 @@ options_fig <- list(
       # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
-      line_c  = '#F28500',  # line color
+      line_c  = '#FFAD2D',  # line color
       line_s  = 2,            # line size
       point_t = '',     # points type
       point_c = '',  # points color

@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "RandD",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Research and Development/1200010E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/8af15361-db42-4803-bde8-dfcc5ea01708"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/d11c8cc8-c66d-4bd0-acc5-174395c86fcd"
   ),
   el=list(
     subtheme = "RandD",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Research and Development/1200010G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/e14dcc06-917e-411a-ac3f-15b3480a285d"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/b5297a93-3bc8-405d-bff8-10f88fbcf07d"
   )
 )
 
@@ -69,7 +69,8 @@ options_fig <- list(
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 14             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -89,11 +90,11 @@ options_fig <- list(
   showlegend = TRUE,
   legend = list(
     x = 0.5,
-    y = -0.08,
+    y = -0.06,
     xanchor = "center",
     yanchor = "top",
-    orientation = "h",
-    itemwidth = 120
+    orientation = "h"
+    # itemwidth = 40
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -127,26 +128,28 @@ options_fig <- list(
       en=list(
         yaxis_h = "Natural Sciences",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Natural Sciences"   # hover header (y-axis)
+        hover_h = "Natural Sciences",   # hover header (y-axis)
+        name = "Natural Sciences"
       ),
       el=list(
         yaxis_h = "Θετικές Επιστήμες",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Θετικές Επιστήμες"   # hover header (y-axis)
+        hover_h = "Θετικές Επιστήμες",   # hover header (y-axis)
+        name = "Θετικές Επιστήμες"
       ),
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
 
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#00065F', # bar color
+      bar_c = '#FFAD2D', # bar color
       
       # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
-      line_c  = '#00065F',  # line color
+      line_c  = '#FFAD2D',  # line color
       line_s  = 2,            # line size
       point_t = 'circle',     # points type
-      point_c = '#00065F',  # points color
+      point_c = '#FFAD2D',  # points color
       point_s = 5             # points size
     )
     ,
@@ -154,26 +157,28 @@ options_fig <- list(
       en=list(
         yaxis_h = "Engineering and technology",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Engineering and technology"   # hover header (y-axis)
+        hover_h = "Engineering and technology",   # hover header (y-axis)
+        name = "Engineering and technology"
       ),
       el=list(
         yaxis_h = "Επιστήμες Μηχανικού",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Επιστήμες Μηχανικού"   # hover header (y-axis)
+        hover_h = "Επιστήμες Μηχανικού",  # hover header (y-axis)
+        name = "Επιστήμες Μηχανικού"
       ),
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
 
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#ff7f0e', # bar color
+      bar_c = '#31576F', # bar color
       
       # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
-      line_c  = '#ff7f0e',  # line color
+      line_c  = '#31576F',  # line color
       line_s  = 2,            # line size
       point_t = 'circle',     # points type
-      point_c = '#ff7f0e',  # points color
+      point_c = '#31576F',  # points color
       point_s = 5             # points size
     )
     ,
@@ -181,26 +186,28 @@ options_fig <- list(
       en=list(
         yaxis_h = "Medical Sciences",  # y-axis header
         buttn_h = "",    # button header
-        hover_h = "Medical Sciences"   # hover header (y-axis)
+        hover_h = "Medical Sciences",   # hover header (y-axis)
+        name = "Medical Sciences"
       ),
       el=list(
         yaxis_h = "Ιατρικές επιστήμες",  # y-axis header
         buttn_h = "",   # button header
-        hover_h = "Ιατρικές επιστήμες"   # hover header (y-axis)
+        hover_h = "Ιατρικές επιστήμες",   # hover header (y-axis)
+        name= "Ιατρικές επιστήμες"
       ),
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
 
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#d62728', # bar color
+      bar_c = '#942514', # bar color
       
       # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
-      line_c  = '#d62728',  # line color
+      line_c  = '#942514',  # line color
       line_s  = 2,            # line size
       point_t = 'circle',     # points type
-      point_c = '#d62728',  # points color
+      point_c = '#942514',  # points color
       point_s = 5             # points size
     )
     ,
@@ -208,26 +215,28 @@ options_fig <- list(
       en=list(
         yaxis_h = "Agricultural Sciences",  # y-axis header
         buttn_h = "" ,   # button header
-        hover_h = "Agricultural Sciences"   # hover header (y-axis)
+        hover_h = "Agricultural Sciences",   # hover header (y-axis)
+        name = "Agricultural Sciences"
       ),
       el=list(
         yaxis_h = "Αγροτικές επιστήμες",  # y-axis header
         buttn_h = "" ,   # button header
-        hover_h = "Αγροτικές επιστήμες"   # hover header (y-axis)
+        hover_h = "Αγροτικές επιστήμες",   # hover header (y-axis)
+        name = "Αγροτικές επιστήμες"
       ),
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
 
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#222222', # bar color
+      bar_c = '#7A8B99', # bar color
       
       # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
-      line_c  = '#222222',  # line color
+      line_c  = '#7A8B99',  # line color
       line_s  = 2,            # line size
       point_t = 'circle',     # points type
-      point_c = '#222222',  # points color
+      point_c = '#7A8B99',  # points color
       point_s = 5             # points size
     )
     ,
@@ -235,26 +244,28 @@ options_fig <- list(
       en=list(
         yaxis_h = "Social Sciences",  # y-axis header
         buttn_h = "" ,   # button header
-        hover_h = "Social Sciences"   # hover header (y-axis)
+        hover_h = "Social Sciences",   # hover header (y-axis)
+        name = "Social Sciences"
       ),
       el=list(
         yaxis_h = "Κοινωνικές επιστήμες",  # y-axis header
         buttn_h = "" ,   # button header
-        hover_h = "Κοινωνικές επιστήμες"   # hover header (y-axis)
+        hover_h = "Κοινωνικές επιστήμες",   # hover header (y-axis)
+        name = "Κοινωνικές επιστήμες"
       ),
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#1f77b4', # bar color
+      bar_c = '#4FA3C1', # bar color
 
       # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
-      line_c  = '#1f77b4',  # line color
+      line_c  = '#4FA3C1',  # line color
       line_s  = 2,            # line size
       point_t = 'circle',     # points type
-      point_c = '#1f77b4',  # points color
+      point_c = '#4FA3C1',  # points color
       point_s = 5             # points size
     )
     ,
@@ -262,26 +273,28 @@ options_fig <- list(
       en=list(
         yaxis_h = "Humanities",  # y-axis header
         buttn_h = "" ,   # button header
-        hover_h = "Humanities"   # hover header (y-axis)
+        hover_h = "Humanities",   # hover header (y-axis)
+        name = "Humanities"
       ),
       el=list(
         yaxis_h = "Ανθρωπιστικές επιστήμες",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Ανθρωπιστικές επιστήμες"   # hover header (y-axis)
+        hover_h = "Ανθρωπιστικές επιστήμες",   # hover header (y-axis)
+        name = "Ανθρωπιστικές επιστήμες"
       ),
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
 
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#2ca02c', # bar color
+      bar_c = '#6E8E3A', # bar color
       
       # --- LINE GRAPH options  - in case of a line chart
       mode = 'lines+markers', # line mode
       line_t  = 'solid',      # line type
-      line_c  = '#2ca02c',  # line color
+      line_c  = '#6E8E3A',  # line color
       line_s  = 2,            # line size
       point_t = 'circle',     # points type
-      point_c = '#2ca02c',  # points color
+      point_c = '#6E8E3A',  # points color
       point_s = 5             # points size
     )
   ),

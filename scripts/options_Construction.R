@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "Construction",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Construction/Building Permits/1440011E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/228b55f4-b620-4a1d-b581-b21cd602c650"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/ba7d259c-670b-4dc6-8548-324f652e31db"
   ),
   el=list(
     subtheme = "Construction",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Construction/Building Permits/1440011G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/57ef0c7a-32ae-4abd-8a2f-791c59663105"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/0a789295-2b49-482f-9dd6-29481da417d8"
   )
 )
 
@@ -57,7 +57,7 @@ options_pxf <- list(
 # ######## FIGURE OPTIONS
 options_fig <- list(
   title = list(
-    en="Building Permits by District and Area",
+    en="Building Permits by District",
     el="Άδειες Οικοδομής κατά Επαρχία"
   ),
   gen=list(    
@@ -127,12 +127,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "Lefkosia",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Lefkosia"   # hover header (y-axis)
+        hover_h = "Lefkosia",   # hover header (y-axis)
+        name = "Lefkosia"
       ),
       el=list(
         yaxis_h = "Λευκωσία",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Λευκωσία"   # hover header (y-axis)
+        hover_h = "Λευκωσία",   # hover header (y-axis)
+        name = "Λευκωσία"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'scatter',       # line graph, bar chart, etc...
@@ -150,12 +152,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "Ammochostos",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Ammochostos"   # hover header (y-axis)
+        hover_h = "Ammochostos",   # hover header (y-axis)
+        name = "Ammochostos"
       ),
       el=list(
         yaxis_h = "Αμμόχωστος",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Αμμόχωστος"   # hover header (y-axis)
+        hover_h = "Αμμόχωστος",   # hover header (y-axis)
+        name = "Αμμόχωστος"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'scatter',       # line graph, bar chart, etc...
@@ -173,12 +177,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "Larnaka",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Larnaka"   # hover header (y-axis)
+        hover_h = "Larnaka",   # hover header (y-axis)
+        name = "Larnaka"
       ),
       el=list(
         yaxis_h = "Λάρνακα",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Λάρνακα"   # hover header (y-axis)
+        hover_h = "Λάρνακα",   # hover header (y-axis)
+        name = "Λάρνακα"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'scatter',       # line graph, bar chart, etc...
@@ -196,12 +202,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "Lemesos",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Lemesos"   # hover header (y-axis)
+        hover_h = "Lemesos",   # hover header (y-axis)
+        name = "Lemesos"
       ),
       el=list(
         yaxis_h = "Λεμεσός",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Λεμεσός"   # hover header (y-axis)
+        hover_h = "Λεμεσός",   # hover header (y-axis)
+        name = "Λεμεσός"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'scatter',       # line graph, bar chart, etc...
@@ -219,12 +227,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "Pafos",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Pafos"   # hover header (y-axis)
+        hover_h = "Pafos",   # hover header (y-axis)
+        name = "Pafos"
       ),
       el=list(
         yaxis_h = "Πάφος",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Πάφος"   # hover header (y-axis)
+        hover_h = "Πάφος",   # hover header (y-axis)
+        name = "Πάφος"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'scatter',       # line graph, bar chart, etc...

@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "SocialIndicators",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Living Conditions, Social Protection/SurveyOnIncomeAndLivingConditionsOfTheHouseholdsEU-SILC/AtRiskOfPovertyOrSocialExclusionAROPE/1901010E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/4622c2e2-97e5-4fad-84d6-4b36cc7c8a22"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/83bec2b6-e62e-40b1-b7ab-febc137f3906"
   ),
   el=list(
     subtheme = "SocialIndicators",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Living Conditions, Social Protection/SurveyOnIncomeAndLivingConditionsOfTheHouseholdsEU-SILC/AtRiskOfPovertyOrSocialExclusionAROPE/1901010G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/4d82e062-3b2a-4bc4-b416-62577c852558"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/eb9ab112-3c83-4c7c-a619-01e9e55839da"
   )
 )
 
@@ -51,7 +51,8 @@ options_fig <- list(
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 14             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -75,7 +76,7 @@ options_fig <- list(
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 120
+    itemwidth = 60
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -96,8 +97,8 @@ options_fig <- list(
   ),
   use_annotations = TRUE,
   annotations = list( # for y-axis label to appear at the top, where the axis arrow ends
-    x = -0.05,
-    y = 0.5,
+    x = -0.005,
+    y = 1.04,
     xref = "paper",
     yref = "paper",
     showarrow = FALSE,
@@ -109,69 +110,77 @@ options_fig <- list(
       en=list(
         yaxis_h = "Total population",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Total population"   # hover header (y-axis)
+        hover_h = "Total population",   # hover header (y-axis)
+        name = "Total population"
       ),
       el=list(
         yaxis_h = "Σύνολο πληθυσμού",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Σύνολο πληθυσμού"   # hover header (y-axis)
+        hover_h = "Σύνολο πληθυσμού",   # hover header (y-axis)
+        name = "Σύνολο πληθυσμού"
       ),
-      hover_f = "{y:.0f}",    # y-values display format
+      hover_f = "{y:.1f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options - in case of a bar chart
-      bar_c = '#ff7f0e' # bar color
+      bar_c = '#FFAD2D' # bar color
     ),
     list(
       en=list(
         yaxis_h = "0-17",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "0-17"   # hover header (y-axis)
+        hover_h = "0-17",   # hover header (y-axis)
+        name = "0-17"
       ),
       el=list(
         yaxis_h = "0-17",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "0-17"   # hover header (y-axis)
+        hover_h = "0-17",   # hover header (y-axis)
+        name = "0-17"
       ),
-      hover_f = "{y:.0f}",    # y-values display format
+      hover_f = "{y:.1f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options
-      bar_c = '#39ace7' # bar color
+      bar_c = '#31576F' # bar color
     ),
     list(
       en=list(
         yaxis_h = "18-64",  # y-axis header
         buttn_h = "",    # button header
-        hover_h = "18-64"   # hover header (y-axis)
+        hover_h = "18-64",   # hover header (y-axis)
+        name = "18-64"
       ),
       el=list(
         yaxis_h = "18-64",  # y-axis header
         buttn_h = "",   # button header
-        hover_h = "18-64"   # hover header (y-axis)
+        hover_h = "18-64",   # hover header (y-axis)
+        name = "18-64"
       ),
-      hover_f = "{y:.0f}",    # y-values display format
+      hover_f = "{y:.1f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options
-      bar_c = '#3c8d0d'
+      bar_c = '#4FA3C1'
     ),
     list(
       en=list(
         yaxis_h = "65+",  # y-axis header
         buttn_h = "",    # button header
-        hover_h = "65+"   # hover header (y-axis)
+        hover_h = "65+",   # hover header (y-axis)
+        name = "65+"
       ),
       el=list(
         yaxis_h = "65+",  # y-axis header
         buttn_h = "",   # button header
-        hover_h = "65+"   # hover header (y-axis)
+        hover_h = "65+",   # hover header (y-axis)
+        name = "65+"
       ),
-      hover_f = "{y:.0f}",    # y-values display format
+      hover_f = "{y:.1f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options
-      bar_c = '#800000'
+      bar_c = '#7A8B99'
     )
   ),
   onRender = list(

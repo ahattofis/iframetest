@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "Population",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Population/Population/1820010E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/8554dd60-46db-4083-9980-2231f8a960cc"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/7bfadf9b-4189-4760-9e4b-e088e53bf887"
   ),
   el=list(
     subtheme = "Population",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Population/Population/1820010G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/6f7d4537-3e64-473f-acbc-5a527b1417f7"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/672b7aaa-f080-410a-a7aa-a67a01d8c365"
   )
 )
 
@@ -50,6 +50,10 @@ options_fig <- list(
     en="Population in the Government Controlled Area (thousand)",
     el="Πληθυσμός στις Περιοχές που Ελέγχει το Κράτος (χιλιάδες)"
   ),
+  subtitle = list(
+    en="2025 provisional data",
+    el="2025 προκαταρκτικά στοιχεία"
+  ),
   gen=list(    
     margin_b = list(l = 100, r = 100, b = 50, t = 50), # figure margin from border
     standoff = 10,           # distance axes labels from axes
@@ -59,7 +63,9 @@ options_fig <- list(
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 12             # font size
+    subtitle_c = "#3C3C3C", # subtitle font color
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -83,7 +89,7 @@ options_fig <- list(
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 120
+    itemwidth = 80
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -111,6 +117,15 @@ options_fig <- list(
     showarrow = FALSE,
     xanchor = "right",
     yanchor = "middle"
+  ),
+  subtitle_annotation = list(
+    x = 0.5,
+    y = 1.04,
+    xref = "paper",
+    yref = "paper",
+    showarrow = FALSE,
+    xanchor = "center",
+    yanchor = "top"
   ),
   trace = list(
     list(

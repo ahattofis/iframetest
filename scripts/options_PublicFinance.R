@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "PublicFinance",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Public Finance/Non-Financial Accounts/0520020E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/6e94a98c-6bff-4c55-952d-0b84d2c7ca86"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/40f2fa64-67ce-44af-8591-bfb8479c3a8e"
   ),
   el=list(
     subtheme = "PublicFinance",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Public Finance/Non-Financial Accounts/0520020G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/cb1100a6-6f26-4133-a250-d305f5f978eb"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/4fa1410c-46ac-4cd7-b37a-c4c0673ebf28"
   )
 )
 
@@ -42,15 +42,20 @@ options_fig <- list(
     en = "General Government Finance",
     el = "Δημοσιονομικοί Λογαριασμοί της Γενικής Κυβέρνησης"
   ),
+  subtitle = list(
+    en="2025 provisional data",
+    el="2025 προκαταρκτικά στοιχεία"
+  ),
   gen=list(
-    margin_b = list(l = 100, r = 100, b = 50, t = 50), # figure margin from border
+    margin_b = list(l = 100, r = 100, b = 60, t = 50), # figure margin from border
     standoff = 10,           # distance axes labels from axes
     chart_type = "scatter"     # "bar" or "line"
   ),
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 14             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -74,7 +79,7 @@ options_fig <- list(
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 120
+    itemwidth = 50
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -100,8 +105,8 @@ options_fig <- list(
   ),
   use_annotations = TRUE,
   annotations = list(         # primary y-axis
-    x = -0.05,
-    y = 1,
+    x = -0.008,
+    y = 1.05,
     xref = "paper",
     yref = "paper",
     showarrow = FALSE,
@@ -109,8 +114,17 @@ options_fig <- list(
     yanchor = "top"
   ),
   annotations2 = list(        # secondary y-axis
-    x = 1.05, 
-    y = 1,
+    x = 1.025, 
+    y = 1.05,
+    xref = "paper",
+    yref = "paper",
+    showarrow = FALSE,
+    xanchor = "center",
+    yanchor = "top"
+  ),
+  subtitle_annotation = list(
+    x = 0.5,
+    y = 1.03,
     xref = "paper",
     yref = "paper",
     showarrow = FALSE,
@@ -122,12 +136,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "Total Revenue",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Total Revenue"   # hover header (y-axis)
+        hover_h = "Total Revenue",   # hover header (y-axis)
+        name = "Total Revenue"
       ),
       el=list(
         yaxis_h = "Σύνολο Εισόδων",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Σύνολο Εισόδων"   # hover header (y-axis)
+        hover_h = "Σύνολο Εισόδων",   # hover header (y-axis)
+        name = "Σύνολο Εισόδων"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'scatter',       # line graph, bar chart, etc...
@@ -136,7 +152,7 @@ options_fig <- list(
       mode = 'lines', # line mode
       yaxis = "y2",
       line_t  = 'solid',      # line type
-      line_c  = '#0077B6',  # line color
+      line_c  = '#FFAD2D',  # line color
       line_s  = 2            # line size
       # point_t = 'circle',     # points type
       # point_c = '#00065F',  # points color
@@ -147,12 +163,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "Total Expenditure",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Total Expenditure"   # hover header (y-axis)
+        hover_h = "Total Expenditure",   # hover header (y-axis)
+        name ="Total Expenditure"
       ),
       el=list(
-        yaxis_h = "Σύνολο Ειξόδων",  # y-axis header
+        yaxis_h = "Σύνολο Εξόδων",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Σύνολο Ειξόδων"   # hover header (y-axis)
+        hover_h = "Σύνολο Εξόδων",   # hover header (y-axis)
+        name ="Σύνολο Εξόδων"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'scatter',       # line graph, bar chart, etc...
@@ -162,7 +180,7 @@ options_fig <- list(
       mode = 'lines', # line mode
       yaxis = "y2",
       line_t  = 'solid',      # line type
-      line_c  = '#800000',  # line color
+      line_c  = '#4FA3C1',  # line color
       line_s  = 2            # line size
       # point_t = 'circle',     # points type
       # point_c = '#800000',  # points color
@@ -173,18 +191,20 @@ options_fig <- list(
       en=list(
         yaxis_h = "General Government balance % of GDP",  # y-axis header
         buttn_h = "",    # button header
-        hover_h = "General Government balance % of GDP"   # hover header (y-axis)
+        hover_h = "General Government balance % of GDP",   # hover header (y-axis)
+        name ="General Government balance % of GDP" 
       ),
       el=list(
         yaxis_h = "Δημοσιονομικό Έλλειμμα/Πλεόνασμα % του ΑΕΠ",  # y-axis header
         buttn_h = "",   # button header
-        hover_h = "Δημοσιονομικό Έλλειμμα/Πλεόνασμα % του ΑΕΠ"   # hover header (y-axis)
+        hover_h = "Δημοσιονομικό Έλλειμμα/Πλεόνασμα % του ΑΕΠ",   # hover header (y-axis)
+        name = "Δημοσιονομικό Έλλειμμα/Πλεόνασμα % του ΑΕΠ"
       ),
-      hover_f = "{y:.0f}",    # y-values display format
+      hover_f = "{y:.1f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options
-      bar_c = '#008000'  # bar color
+      bar_c = '#31576F'  # bar color
       
     )
   ),

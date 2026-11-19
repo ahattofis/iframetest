@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "LabourForce",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Labour Market/Labour Force Survey/0110011E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/c267f02d-2b94-4b63-962c-0b67f73e2564"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/088ecbd4-5128-4bf4-9f3e-977406ed9511"
   ),
   el=list(
     subtheme = "LabourForce",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Labour Market/Labour Force Survey/0110011G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/8161f115-0b5e-424c-a1a4-c5430eae5e21"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/6ca9fe21-f75c-46b1-855c-80269c176896"
   )
 )
 
@@ -75,7 +75,8 @@ options_fig <- list(
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 14             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -99,7 +100,7 @@ options_fig <- list(
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 120
+    itemwidth = 70
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -116,7 +117,7 @@ options_fig <- list(
   ),
   yaxis = list(
     en = list(title = "000's persons", tickformat = ",.0f"),
-    el = list(title = "000's άτομα", tickformat = ",.0f")      # full numbers with thousands separator
+    el = list(title = "000'ς άτομα", tickformat = ",.0f")      # full numbers with thousands separator
   ),
   # Secondary y-axis
   yaxis2 = list( 
@@ -125,8 +126,8 @@ options_fig <- list(
   ),
   use_annotations = TRUE,
   annotations = list(         # primary y-axis
-    x = -0.05,
-    y = 1,
+    x = -0.03,
+    y = 1.02,
     xref = "paper",
     yref = "paper",
     showarrow = FALSE,
@@ -134,8 +135,8 @@ options_fig <- list(
     yanchor = "top"
   ),
   annotations2 = list(        # secondary y-axis
-    x = 1.05, 
-    y = 1,
+    x = 1.01, 
+    y = 1.03,
     xref = "paper",
     yref = "paper",
     showarrow = FALSE,
@@ -147,12 +148,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "000's persons",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "000's persons"   # hover header (y-axis)
+        hover_h = "Labour Force (000's)",   # hover header (y-axis)
+        name = "Labour Force (000's)"
       ),
       el=list(
-        yaxis_h = "000's άτομα",  # y-axis header
+        yaxis_h = "000΄ς άτομα",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "000's άτομα"   # hover header (y-axis)
+        hover_h = "Εργατικό Δυναμικό (000΄ς)",   # hover header (y-axis)
+        name = "Εργατικό Δυναμικό (000΄ς)"
       ),
       hover_f = "{y:.0f}",    # y-values display format
       type = 'scatter',       # line graph, bar chart, etc...
@@ -161,22 +164,24 @@ options_fig <- list(
       mode = 'lines', # line mode
       yaxis = "y",
       line_t  = 'solid',      # line type
-      line_c  = '#1f77b4',  # line color
+      line_c  = '#FFAD2D',  # line color
       line_s  = 2,            # line size
       point_t = 'circle',     # points type
-      point_c = '#1f77b4',  # points color
+      point_c = '#FFAD2D',  # points color
       point_s = 10             # points size
     ),
     list(
       en=list(
         yaxis_h = "",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = ""   # hover header (y-axis)
+        hover_h = "Employment (000's)",    # hover header (y-axis)
+        name = "Employment (000's)"
       ),
       el=list(
         yaxis_h = "",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = ""   # hover header (y-axis)
+        hover_h = "Απασχόληση (000΄ς)" ,  # hover header (y-axis)
+        name = "Απασχόληση (000΄ς)"
       ),
       hover_f = "{y:.0f}",    # y-values display format
       type = 'scatter',       # line graph, bar chart, etc...
@@ -185,28 +190,30 @@ options_fig <- list(
       mode = 'lines', # line mode
       yaxis = "y",
       line_t  = 'solid',      # line type
-      line_c  = '#06402B',  # line color
+      line_c  = '#4FA3C1',  # line color
       line_s  = 2,            # line size
       point_t = 'triangle-up',     # points type
-      point_c = '#06402B',  # points color
+      point_c = '#4FA3C1',  # points color
       point_s = 10             # points size
     ),
     list(
       en=list(
         yaxis_h = "%",
         buttn_h = "",
-        hover_h = "%"
+        hover_h = "Unemployment (%)",
+        name = "Unemployment (%)"
       ),
       el=list(
         yaxis_h = "%",
         buttn_h = "",
-        hover_h = "%"
+        hover_h = "Ανεργία (%)",
+        name = "Ανεργία (%)"
       ),
       hover_f = "{y:.0f}",    # y-values display format
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options
-      bar_c = "#550000",  # bar color
+      bar_c = "#31576F",  # bar color
       yaxis = "y2"
     )
   ),

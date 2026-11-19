@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "Industry",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Industry/Index of Industrial Production/0210046E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/ac63495e-c1b2-4667-a171-626e20526db7"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/a39d4949-4ac8-4050-aee2-b58a0849b4db"
   ),
   el=list(
     subtheme = "Industry",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Industry/Index of Industrial Production/0210046G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/ce572af8-e1a3-4b1c-9ccb-6dc23c416277"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/98d32080-c58b-4f09-851e-095465b6f3d2"
   )
 )
 
@@ -39,8 +39,12 @@ options_pxf <- list(
 # ######## FIGURE OPTIONS
 options_fig <- list(
   title = list(
-    en = "Index of Industrial Production (% change - previous year)",
-    el = "Δείκτης Βιομηχανικής Παραγωγής (% μεταβολή - προηγούμενο έτος)"
+    en = "Index of Industrial Production",
+    el = "Δείκτης Βιομηχανικής Παραγωγής"
+  ),
+  subtitle = list(
+    en="% annual change",
+    el="% ετήσια μεταβολή"
   ),
   gen=list(
     margin_b = list(l = 100, r = 100, b = 50, t = 50), # figure margin from border
@@ -50,7 +54,8 @@ options_fig <- list(
   fonts = list(
     font_t = "Verdana",     # font type
     font_c = "black",       # font color
-    font_s = 14             # font size
+    font_s = 13,            # font size for axes/ticks/labels
+    title_s = 15            # font size for title
   ),
   hover = list(
     hover_t = "x unified",  # hover type # Set to "x" to have separate tooltips for each graph line/bar shown
@@ -67,14 +72,14 @@ options_fig <- list(
     spike_c = "black",  # spikeline color
     spike_s = 2             # spikeline size
   ),
-  showlegend = TRUE,
+  showlegend = FALSE,
   legend = list(
     x = 0.5,
     y = -0.07,
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 120
+    itemwidth = 70
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -95,8 +100,17 @@ options_fig <- list(
   ),
   use_annotations = TRUE,
   annotations = list( # for y-axis label to appear at the top, where the axis arrow ends
-    x = -0.05,
-    y = 0.5,
+    x = -0.01,
+    y = 1.015,
+    xref = "paper",
+    yref = "paper",
+    showarrow = FALSE,
+    xanchor = "center",
+    yanchor = "top"
+  ),
+  subtitle_annotation = list(
+    x = 0.5,
+    y = 1.015,
     xref = "paper",
     yref = "paper",
     showarrow = FALSE,
@@ -119,7 +133,7 @@ options_fig <- list(
       type = 'bar',       # line graph, bar chart, etc...
       
       # --- BAR GRAPH options
-      bar_c = '#AF4035'  # bar color
+      bar_c = '#31576F'  # bar color
     )
   ),
   onRender = list(

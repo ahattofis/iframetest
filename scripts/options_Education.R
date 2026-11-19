@@ -4,13 +4,13 @@ options_api <- list(
     subtheme = "Education",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Education/0700010E.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/6e6542db-e209-4b4e-acb0-a5d5066993bf"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/5d20fc17-822c-4cba-a47e-b16899c35712"
   ),
   el=list(
     subtheme = "Education",
     db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Education/0700010G.px",
-    user_link ="https://cystatdb.cystat.gov.cy:443/sq/24eaaa3c-6c26-45d8-ba5c-559e8c9d8e26"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/156b73be-4f4d-4571-9cf2-fd8ac0fda34b"
   )
 )
 
@@ -89,7 +89,7 @@ options_fig <- list(
     xanchor = "center",
     yanchor = "top",
     orientation = "h",
-    itemwidth = 70
+    itemwidth = 60
   ),
   show_updmenu = FALSE,
   updmenus = list(
@@ -123,12 +123,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "Pre-school & pre-primary",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Pre-school & pre-primary"   # hover header (y-axis)
+        hover_h = "Pre-school & pre-primary",   # hover header (y-axis)
+        name = "Pre-school & pre-primary"
       ),
       el=list(
         yaxis_h = "Προσχολική και προδημοτική",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Προσχολική και προδημοτική"   # hover header (y-axis)
+        hover_h = "Προσχολική και προδημοτική",   # hover header (y-axis)
+        name = "Προσχολική και προδημοτική"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'scatter',       # line graph, bar chart, etc...
@@ -146,12 +148,14 @@ options_fig <- list(
       en=list(
         yaxis_h = "Primary",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Primary"   # hover header (y-axis)
+        hover_h = "Primary",   # hover header (y-axis)
+        name = "Primary"
       ),
       el=list(
         yaxis_h = "Δημοτική",  # y-axis header
         buttn_h = "" ,    # button header
-        hover_h = "Δημοτική"   # hover header (y-axis)
+        hover_h = "Δημοτική",   # hover header (y-axis)
+        name = "Δημοτική"
       ),
       hover_f = "{y:,.0f}",    # y-values display format
       type = 'scatter',       # line graph, bar chart, etc...
@@ -169,12 +173,14 @@ options_fig <- list(
         en=list(
           yaxis_h = "Secondary",  # y-axis header
           buttn_h = "" ,    # button header
-          hover_h = "Secondary"   # hover header (y-axis)
+          hover_h = "Secondary",   # hover header (y-axis)
+          name = "Secondary"
         ),
         el=list(
           yaxis_h = "Μέση",  # y-axis header
           buttn_h = "" ,    # button header
-          hover_h = "Μέση"   # hover header (y-axis)
+          hover_h = "Μέση",   # hover header (y-axis)
+          name = "Μέση"
         ),
         hover_f = "{y:,.0f}",    # y-values display format
         type = 'scatter',       # line graph, bar chart, etc...
@@ -192,12 +198,14 @@ options_fig <- list(
           en=list(
             yaxis_h = "Tertiary",  # y-axis header
             buttn_h = "" ,    # button header
-            hover_h = "Tertiary"   # hover header (y-axis)
+            hover_h = "Tertiary",   # hover header (y-axis)
+            name = "Tertiary"
           ),
           el=list(
             yaxis_h = "Τριτοβάθμια",  # y-axis header
             buttn_h = "" ,    # button header
-            hover_h = "Τριτοβάθμια"   # hover header (y-axis)
+            hover_h = "Τριτοβάθμια",   # hover header (y-axis)
+            name = "Τριτοβάθμια"
           ),
           hover_f = "{y:,.0f}",    # y-values display format
           type = 'scatter',       # line graph, bar chart, etc...
